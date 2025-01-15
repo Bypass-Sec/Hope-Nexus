@@ -63,7 +63,7 @@ const SignIn = () => {
               <div className="text-red-600">{errors.password}</div>
             ) : null}
 
-            <Link href="/reset-password" className="link w-full">
+            <Link href="/auth/reset-password" className="link w-full">
               Forgot your password?
             </Link>
 
@@ -74,7 +74,7 @@ const SignIn = () => {
         )}
       </Formik>
       {errorMsg && <div className="text-red-600">{errorMsg}</div>}
-      <Link href="/sign-up" className="link w-full">
+      <Link href="/auth/sign-up" className="link w-full">
         Don&apos;t have an account? Sign Up.
       </Link>
     </div>
