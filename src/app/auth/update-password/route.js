@@ -10,7 +10,7 @@ export async function GET(request) {
     const supabase = createRouteHandlerClient({ cookies });
     await supabase.auth.exchangeCodeForSession(code);
 
-    return NextResponse.redirect(`${requestUrl.origin}/auth/update-password`);
+    return NextResponse.redirect(`${requestUrl.origin}/update-password`);
   }
 
   // eslint-disable-next-line no-console
