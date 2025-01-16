@@ -8,8 +8,9 @@ import Link from 'next/link';
 import * as Yup from 'yup';
 
 const SignUpSchema = Yup.object().shape({
+  displayName: Yup.string().required('Display name is required'),
   email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().required('Required'),
+  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
 });
 
 const SignUp = () => {
@@ -21,7 +22,11 @@ const SignUp = () => {
     const { error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
-      // redirectTo: `${window.location.origin}/auth/callback`,
+      options: {
+        data: {
+          display_name: formData.displayName, // Save the display name as a custom user metadata field
+        },
+      },
     });
 
     if (error) {
@@ -36,6 +41,7 @@ const SignUp = () => {
       <h2 className="w-full text-center">Create Account</h2>
       <Formik
         initialValues={{
+          displayName: '',
           email: '',
           password: '',
         }}
@@ -44,9 +50,21 @@ const SignUp = () => {
       >
         {({ errors, touched }) => (
           <Form className="column w-full">
+            <label htmlFor="displayName">Display Name</label>
+            <Field
+              className={cn('input', errors.displayName && touched.displayName && 'bg-red-50')}
+              id="displayName"
+              name="displayName"
+              placeholder="Jane Doe"
+              type="text"
+            />
+            {errors.displayName && touched.displayName ? (
+              <div className="text-red-600">{errors.displayName}</div>
+            ) : null}
+
             <label htmlFor="email">Email</label>
             <Field
-              className={cn('input', errors.email && 'bg-red-50')}
+              className={cn('input', errors.email && touched.email && 'bg-red-50')}
               id="email"
               name="email"
               placeholder="jane@acme.com"
@@ -56,11 +74,12 @@ const SignUp = () => {
               <div className="text-red-600">{errors.email}</div>
             ) : null}
 
-            <label htmlFor="email">Password</label>
+            <label htmlFor="password">Password</label>
             <Field
               className={cn('input', errors.password && touched.password && 'bg-red-50')}
               id="password"
               name="password"
+              placeholder="******"
               type="password"
             />
             {errors.password && touched.password ? (
