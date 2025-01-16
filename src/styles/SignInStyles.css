@@ -4,19 +4,31 @@
 
 @layer base {
   h2 {
-    @apply py-4 text-4xl font-black text-gray-800;
+    @apply py-4 text-4xl font-black text-white;
   }
 
   .button {
-    @apply custom-focus rounded-full border-2 border-green-400 bg-white px-8 py-2 font-bold text-green-400 hover:bg-green-400 hover:text-white focus:bg-green-400 focus:text-white;
+    @apply custom-focus rounded-full border-2 border-orange-500 bg-white px-8 py-2 font-bold text-orange-500 hover:bg-orange-500 hover:text-white focus:bg-orange-500 focus:text-white;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
   }
 
   .button-inverse {
-    @apply custom-focus rounded-full border-2 border-white bg-green-400 px-8 py-2 font-bold text-white hover:border-green-400 hover:bg-white hover:text-green-400 focus:border-green-400 focus:bg-white focus:text-green-400;
+    @apply custom-focus rounded-full border-2 border-white bg-orange-500 px-8 py-2 font-bold text-white hover:border-orange-500 hover:bg-white hover:text-orange-500 focus:border-orange-500 focus:bg-white focus:text-orange-500;
   }
 
   .card {
-    @apply column min-w-[20rem] items-center gap-8 rounded-2xl bg-white py-8 px-4 shadow-md sm:min-w-[24rem] sm:px-10;
+    @apply column min-w-[20rem] items-center gap-8 rounded-2xl bg-black backdrop-blur-sm py-8 px-4 shadow-md sm:min-w-[33rem] sm:px-10 border border-slate-300/25;
+    background: #0204119a;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .column {
@@ -24,11 +36,11 @@
   }
 
   .custom-focus {
-    @apply focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2;
+    @apply focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
   }
 
   .heading {
-    @apply text-lg font-semibold text-gray-700;
+    @apply text-lg font-semibold text-gray-50;
   }
 
   .highlight {
@@ -44,10 +56,44 @@
   }
 
   .link {
-    @apply custom-focus rounded-md font-semibold text-green-400;
+    @apply custom-focus rounded-md font-semibold text-orange-500;
   }
 
   .row {
     @apply flex flex-row items-center justify-start gap-1;
+  }
+
+  .auth-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    margin-top: -4rem;
+  }
+
+  .auth-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  input, button {
+    font-size: 16px !important;
+    height: auto !important;
+    padding: 12px 16px !important;
   }
 }

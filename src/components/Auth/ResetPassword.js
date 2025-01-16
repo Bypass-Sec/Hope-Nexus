@@ -59,7 +59,7 @@ const ResetPassword = () => {
       </Formik>
       {errorMsg && <div className="text-center text-red-600">{errorMsg}</div>}
       {successMsg && <div className="text-center text-black">{successMsg}</div>}
-      <Link href="/sign-in" className="link">
+      <Link href="/auth/sign-in" className="link">
         Remember your password? Sign In.
       </Link>
     </div>

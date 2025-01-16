@@ -1,27 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-html,
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Manrope", sans-serif;
-    font-size: 62.5%;
-    font-size: 10px;
-}
 /* Navbar section */
 
 .nav {
     width: 100%;
     height: 65px;
     position: fixed;
-		top: 0;
-		width: 100%;
-		transition: transform 0.3s ease-in-out;
-    line-height: 65px;
+    top: 0;
+    transition: transform 0.3s ease-in-out;
+    line-height: 35px;
     text-align: center;
-		backdrop-filter: blur(10px);
-		background-color: rgba(0, 0, 0, 0.25);
-		border-bottom: 1px solid #89A3AE;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid #89A3AE;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 2rem;
 }
 
 .orange-button {
@@ -29,7 +33,7 @@ body {
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-left: 20px;
 }
 
@@ -43,6 +47,8 @@ body {
     width: auto;
     height: auto;
     padding-left: 3rem;
+    display: flex;
+    align-items: center;
 }
 
 .nav div.logo a {
@@ -52,8 +58,13 @@ body {
 }
 
 .nav div.main_list {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 65px;
-    float: right;
+    float: center;
+    margin-left: 10px;
 }
 
 .nav div.main_list ul {
@@ -63,44 +74,138 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center;
+    gap: 7%;
 }
 
 .nav div.main_list ul li {
     width: auto;
     height: 65px;
     padding: 0;
-    padding-right: 3rem;
+    padding-right: 4.5rem;
 }
 
 .nav div.main_list ul li a {
     text-decoration: none;
     color: #fff;
     line-height: 65px;
-    font-size: 2.4rem;
+    font-size: 2rem;
 }
 
 .nav div.main_list ul li a:hover {
-    color: #00E676;
+    color: #0093FA;
 }
 
+.registerBtn {
+    background-color: #f97316;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.registerBtn:hover {
+    background-color: #ffffff;
+    color: #f97316
+}
 
 .navTrigger {
     display: none;
 }
-
-.nav {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    -webkit-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-}
-
 
 /* Media qurey section */
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .container {
         margin: 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .navContainer {
+        padding: 0 1rem;
+    }
+
+    .nav div.logo {
+        padding-left: 1rem;
+    }
+
+    .nav div.logo img {
+        width: 120px;
+        height: auto;
+    }
+
+    .nav div.main_list {
+        position: fixed;
+        top: 65px;
+        left: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        margin-left: 0;
+    }
+
+    .nav div.show_list {
+        height: calc(100vh - 65px);
+        display: block;
+    }
+
+    .nav div.main_list ul {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    .nav div.main_list ul li {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+
+    .nav div.main_list ul li a {
+        font-size: 1.8rem;
+        padding: 1rem 0;
+        display: block;
+    }
+
+    .registerBtn {
+        display: none; /* Hide on mobile, add to mobile menu instead */
+    }
+
+    .navTrigger {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+/* Tablet adjustments */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .nav div.main_list ul li {
+        padding-right: 2rem;
+    }
+
+    .nav div.main_list ul li a {
+        font-size: 1.8rem;
+    }
+
+    .nav div.main_list {
+        margin-left: 15%;
+    }
+}
+
+/* Large screens */
+@media screen and (min-width: 1025px) {
+    .nav div.main_list {
+        margin-left: 20%;
     }
 }
 

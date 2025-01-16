@@ -16,5 +16,5 @@ export async function GET(request) {
   // eslint-disable-next-line no-console
   console.error('ERROR: Invalid auth code or no auth code found');
 
-  return NextResponse.redirect(`${requestUrl.origin}/sign-in`);
+  return NextResponse.redirect(`${requestUrl.origin}/auth/sign-in`);
 }
