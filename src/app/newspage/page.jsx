@@ -1,24 +1,9 @@
-'use client'
-
-import React, { useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import TextCard from '../../components/newscard';
 import fetchNews from '../../fetchnews';
 
-export default function NewsPage() {
-  const [newsArray, setNewsArray] = useState([]);
-
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const articles = await fetchNews();
-        setNewsArray(Array.isArray(articles) ? articles : []);
-      } catch (error) {
-        console.error('Error fetching news:', error);
-        setNewsArray([]);
-      }
-    }
-    loadData();
-  }, []);
+export default async function NewsPage() {
+  const newsArray = await fetchNews();
 
   return (
     <div className="min-h-screen bg-white">
@@ -38,19 +23,26 @@ export default function NewsPage() {
             Latest News
           </h1>
 
-          {/* News Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {newsArray.map((article, index) => (
-              <TextCard
-                key={index}
-                heading={article.title || 'No Title Available'}
-                subheading={`${article.authorsByline || 'Anonymous'}, ${article.source?.domain || 'Unknown Publisher'}`}
-                bodyText={article.summary || 'No Summary Available'}
-                imageUrl={article.imageUrl || 'https://via.placeholder.com/150'}
-                linkUrl={article.url || '#'}
-              />
-            ))}
-          </div>
+          <Suspense fallback={<div className="text-center">Loading news...</div>}>
+            {newsArray.length === 0 ? (
+              <div className="text-center text-xl my-4">
+                No news articles available
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                {newsArray.map((article, index) => (
+                  <TextCard
+                    key={index}
+                    heading={article.title || 'No Title Available'}
+                    subheading={`${article.authorsByline || 'Anonymous'}, ${article.source?.domain || 'Unknown Publisher'}`}
+                    bodyText={article.summary || 'No Summary Available'}
+                    imageUrl={article.imageUrl || 'https://via.placeholder.com/150'}
+                    linkUrl={article.url || '#'}
+                  />
+                ))}
+              </div>
+            )}
+          </Suspense>
         </div>
       </div>
     </div>
