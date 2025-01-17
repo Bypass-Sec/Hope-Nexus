@@ -5,6 +5,15 @@ import Map, { Marker, NavigationControl, ScaleControl } from 'react-map-gl'
 import { MapPin, X } from 'lucide-react'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
+// Add this function at the top of the file, after imports
+function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 export default function InteractiveMap() {
   const [markers, setMarkers] = useState([])
   const [currentCoords, setCurrentCoords] = useState(null)
@@ -36,7 +45,7 @@ export default function InteractiveMap() {
     const newMarker = {
       longitude: lngLat.lng,
       latitude: lngLat.lat,
-      id: `marker-${Date.now()}`,
+      id: generateUUID(), 
     }
     
     setNewMarkerModal(newMarker)
@@ -90,14 +99,14 @@ export default function InteractiveMap() {
 
   if (isLoading) {
     return (
-      <div className="relative w-full h-[600px] rounded-lg overflow-hidden flex items-center justify-center bg-black/75">
-        <div className="text-white text-xl">Loading map data...</div>
+      <div className="relative w-full h-[600px] rounded-lg overflow-hidden flex items-center justify-center bg-gray-100">
+        <div className="text-black text-xl">Loading map data...</div>
       </div>
     )
   }
 
   return (
-    <div className="relative w-full h-[600px] rounded-lg overflow-hidden">
+    <div className="relative w-[95%] h-[600px] rounded-lg overflow-hidden mx-auto">
       <div className="absolute top-4 left-4 z-10 bg-black/75 rounded-md text-white backdrop-blur-md p-2"> 
         <label className="flex items-center space-x-2 cursor-pointer">
           <input
@@ -146,7 +155,7 @@ export default function InteractiveMap() {
       
       {newMarkerModal && (
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center">
-          <div className="bg-black/85 border-white/50 backdrop-blur-md rounded-lg p-6 w-96 shadow-xl">
+          <div className="bg-black/85 border-white/50 backdrop-blur-md rounded-lg p-6 w-[600px] shadow-xl">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg text-white font-semibold">New Marker</h3>
               <button onClick={() => setNewMarkerModal(null)}>
