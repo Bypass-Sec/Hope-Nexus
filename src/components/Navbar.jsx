@@ -45,7 +45,7 @@ const Navbar = () => {
           <ul className={styles.navlinks}>
             <li className='font-semibold'><Link href="/about">Home</Link></li>
             <li className='font-semibold'><Link href="/crisismap">Crisis Map</Link></li>
-            <li className='font-semibold'><Link href="/services">News</Link></li>
+            <li className='font-semibold'><Link href="/newspage">News</Link></li>
             <li className='font-semibold'><Link href="/contact">Forums</Link></li>
           </ul>
         </div>
