@@ -27,7 +27,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`${styles.nav} ${isHidden ? styles['nav--hidden'] : ''} ${isAffix ? styles.affix : ''}`}>
+    <nav className={`${styles.nav} ${isHidden ? styles['nav--hidden'] : ''} ${isAffix ? styles.affix : ''} z-[10]`}>
       <div className={styles.navContainer}>
         <div className={styles.logo}>
           <Link href="/">
@@ -44,7 +44,7 @@ const Navbar = () => {
         <div className={styles.main_list}>
           <ul className={styles.navlinks}>
             <li className='font-semibold'><Link href="/about">Home</Link></li>
-            <li className='font-semibold'><Link href="/portfolio">Crisis Map</Link></li>
+            <li className='font-semibold'><Link href="/crisismap">Crisis Map</Link></li>
             <li className='font-semibold'><Link href="/services">News</Link></li>
             <li className='font-semibold'><Link href="/contact">Forums</Link></li>
           </ul>
