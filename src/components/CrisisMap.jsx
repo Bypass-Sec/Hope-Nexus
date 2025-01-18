@@ -107,7 +107,7 @@ export default function InteractiveMap() {
 
   return (
     <div className="relative w-full h-full rounded-lg overflow-hidden mx-auto">
-      <div className="absolute top-4 left-4 z-10 bg-black/75 rounded-md text-white backdrop-blur-md p-2"> 
+      <div className="absolute bottom-4 left-4 z-10 bg-black/75 rounded-md text-white backdrop-blur-md p-2"> 
         <label className="flex items-center space-x-2 cursor-pointer">
           <input
             type="checkbox"
@@ -230,11 +230,6 @@ export default function InteractiveMap() {
         </div>
       )}
 
-      {currentCoords && (
-        <div className="absolute bottom-4 left-4 bg-black/75 text-white px-4 py-2 rounded-md backdrop-blur-sm">
-          Coordinates: {currentCoords.lng.toFixed(4)}, {currentCoords.lat.toFixed(4)}
-        </div>
-      )}
     </div>
   )
 }

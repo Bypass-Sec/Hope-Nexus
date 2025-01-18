@@ -63,26 +63,24 @@
     justify-content: center;
     align-items: center;
     height: 65px;
-    float: center;
-    margin-left: 10px;
+    padding: 0 20px;
 }
 
 .nav div.main_list ul {
-    width: 100%;
+    width: auto;
     height: 65px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
-    align-items: center;
-    gap: 7%;
+    gap: 8rem;
 }
 
 .nav div.main_list ul li {
-    width: auto;
     height: 65px;
     padding: 0;
-    padding-right: 4.5rem;
 }
 
 .nav div.main_list ul li a {
@@ -90,6 +88,7 @@
     color: #fff;
     line-height: 65px;
     font-size: 2rem;
+    transition: color 0.3s ease;
 }
 
 .nav div.main_list ul li a:hover {
@@ -198,14 +197,14 @@
     }
 
     .nav div.main_list {
-        margin-left: 15%;
+        margin-left: 0; /* Remove margin */
     }
 }
 
 /* Large screens */
 @media screen and (min-width: 1025px) {
     .nav div.main_list {
-        margin-left: 20%;
+        margin-left: 0; /* Remove margin */
     }
 }
 
@@ -233,7 +232,6 @@
         left: 0;
         bottom: 0;
         background-color: #111;
-        /*same background color of navbar*/
         background-position: center top;
     }
     .nav div.main_list ul li {
