@@ -17,6 +17,7 @@
     "classnames": "^2.5.1",
     "encoding": "^0.1.13",
     "formik": "^2.4.6",
+    "framer-motion": "^11.18.1",
     "lucide-react": "^0.471.1",
     "mapbox-gl": "^3.9.3",
     "next": "^15.1.4",

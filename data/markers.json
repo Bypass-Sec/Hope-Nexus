@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "longitude": -118.05745763781528,
+    "latitude": 33.99022386776146,
+    "id": "fa818990-a48d-408c-9178-3b081ca9e214",
+    "title": "Greater Los Angeles wildfires",
+    "description": "Fires across the Los Angeles area have killed at least 27 people, destroyed more than 12,000 structures and charred more than 60 square miles.",
+    "imageUrl": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2025-01/250108-1920x1080-hollywood-hills-Sunset-Fire-helicopter-firefighting-ac-1107p-971930.jpg",
+    "links": [
+      "https://www.nbcnews.com/news/us-news/photos-los-angeles-palisades-scale-california-fires-rcna186941"
+    ]
+  }
+]

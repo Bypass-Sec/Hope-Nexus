@@ -11,7 +11,7 @@ function TextCard({ heading, subheading, bodyText, imageUrl, linkUrl }) {
             {/* Card container */}
             <div
                 className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow duration-300 flex flex-col"
-                style={{ height: '456px' }} // Set a consistent card height
+                style={{ height: '456px' }} 
             >
                 {/* Image */}
                 <div className="mb-4">
@@ -39,11 +39,11 @@ function TextCard({ heading, subheading, bodyText, imageUrl, linkUrl }) {
                         className="text-slate-600 overflow-hidden"
                         style={{
                             height: '100%',
-                            display: '-webkit-box',         // Changed from 'block'
-                            overflowY: 'hidden',            // Hide overflowing content dynamically
+                            display: '-webkit-box',         
+                            overflowY: 'hidden',            
                             textOverflow: 'ellipsis',
-                            WebkitBoxOrient: 'vertical',    // Needed for multi-line truncation
-                            WebkitLineClamp: 3,             // Limit to 3 lines (adjust as needed)
+                            WebkitBoxOrient: 'vertical',   
+                            WebkitLineClamp: 3,            
                         }}
                     >
                         {bodyText}

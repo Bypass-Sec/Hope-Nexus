@@ -3,6 +3,7 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react'
 import Map, { Marker, NavigationControl, ScaleControl } from 'react-map-gl'
 import { MapPin, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 // Add this function at the top of the file, after imports
@@ -167,68 +168,76 @@ export default function InteractiveMap() {
         </div>
       )}
 
-      {selectedMarker && (
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/85 backdrop-blur-md rounded-lg shadow-xl max-w-md w-96 transform transition-all duration-300 ease-in-out max-h-[80vh] flex flex-col">
-          {selectedMarker.imageUrl && (
-            <div className="w-full h-48 flex-shrink-0">
-              <img
-                src={selectedMarker.imageUrl}
-                alt={selectedMarker.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
-          
-          <div className="p-6 overflow-y-auto overflow-x-hidden flex-1">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="font-semibold text-xl text-white break-words mr-2">{selectedMarker.title}</h3>
-              <button 
-                onClick={() => setSelectedMarker(null)}
-                className="text-gray-300 hover:text-white transition-colors"
-                aria-label="Close"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="mb-4">
-              <p className="text-gray-300 text-base leading-relaxed break-words">{selectedMarker.description}</p>
-            </div>
-
-            {selectedMarker.links && selectedMarker.links.length > 0 && (
-              <div className="mb-4">
-                <h4 className="font-semibold text-sm mb-2 text-white">Links:</h4>
-                <ul className="space-y-1">
-                  {selectedMarker.links.map((link, index) => (
-                    <li key={index} className="break-words">
-                      <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sky-400 hover:text-sky-300 hover:underline text-sm inline-block"
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+      <AnimatePresence>
+        {selectedMarker && (
+          <motion.div 
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ type: "spring", damping: 20, stiffness: 100 }}
+            className="absolute left-0 top-[-1px] bottom-0 w-1/4 bg-black/85 backdrop-blur-md shadow-2xl flex flex-col"
+          >
+            {selectedMarker.imageUrl && (
+              <div className="w-full h-48 flex-shrink-0">
+                <img
+                  src={selectedMarker.imageUrl}
+                  alt={selectedMarker.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
             )}
+            
+            <div className="p-6 overflow-y-auto overflow-x-hidden flex-1">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="font-semibold text-xl text-white break-words mr-2">{selectedMarker.title}</h3>
+                <button 
+                  onClick={() => setSelectedMarker(null)}
+                  className="text-gray-300 hover:text-white transition-colors"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            {interactionsEnabled && (
-              <button 
-                onClick={() => {
-                  removeMarker(selectedMarker.id)
-                  setSelectedMarker(null)
-                }}
-                className="w-full mt-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
-              >
-                Delete Marker
-              </button>
-            )}
-          </div>
-        </div>
-      )}
+              <div className="mb-4">
+                <p className="text-gray-300 text-base leading-relaxed break-words">{selectedMarker.description}</p>
+              </div>
+
+              {selectedMarker.links && selectedMarker.links.length > 0 && (
+                <div className="mb-4">
+                  <h4 className="font-semibold text-sm mb-2 text-white">Links:</h4>
+                  <ul className="space-y-1">
+                    {selectedMarker.links.map((link, index) => (
+                      <li key={index} className="break-words">
+                        <a
+                          href={link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sky-400 hover:text-sky-300 hover:underline text-sm inline-block"
+                        >
+                          {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {interactionsEnabled && (
+                <button 
+                  onClick={() => {
+                    removeMarker(selectedMarker.id)
+                    setSelectedMarker(null)
+                  }}
+                  className="w-full mt-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
+                >
+                  Delete Marker
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   )
