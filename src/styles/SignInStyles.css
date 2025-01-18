@@ -22,13 +22,17 @@
   }
 
   .card {
-    @apply column min-w-[20rem] items-center gap-8 rounded-2xl bg-black backdrop-blur-sm py-8 px-4 shadow-md sm:min-w-[33rem] sm:px-10 border border-slate-300/25;
+    @apply column items-center gap-8 rounded-2xl bg-black backdrop-blur-sm py-8 px-4 shadow-md border border-slate-300/25;
     background: #0204119a;
     padding: 2rem;
     border-radius: 0.5rem;
-    width: 100%;
+    width: 90%;
     max-width: 400px;
     margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .column {
@@ -64,23 +68,17 @@
   }
 
   .auth-container {
+    @apply flex min-h-screen items-center justify-center;
     width: 100%;
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    margin-top: -4rem;
+    padding: 1rem;
   }
 
   .auth-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    @apply w-full flex flex-col items-center gap-4;
   }
 
   .form-group {
-    margin-bottom: 1rem;
-    width: 100%;
+    @apply w-full mb-4;
   }
 
   .form-control {
@@ -95,5 +93,9 @@
     font-size: 16px !important;
     height: auto !important;
     padding: 12px 16px !important;
+  }
+
+  label {
+    @apply text-white font-medium;
   }
 }
