@@ -1,16 +1,5 @@
 [
   {
-    "longitude": -118.05745763781528,
-    "latitude": 33.99022386776146,
-    "id": "fa818990-a48d-408c-9178-3b081ca9e214",
-    "title": "Greater Los Angeles wildfires",
-    "description": "Fires across the Los Angeles area have killed at least 27 people, destroyed more than 12,000 structures and charred more than 60 square miles.",
-    "imageUrl": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2025-01/250108-1920x1080-hollywood-hills-Sunset-Fire-helicopter-firefighting-ac-1107p-971930.jpg",
-    "links": [
-      "https://www.nbcnews.com/news/us-news/photos-los-angeles-palisades-scale-california-fires-rcna186941"
-    ]
-  },
-  {
     "longitude": 34.45488596534139,
     "latitude": 31.49269676500711,
     "id": "d48c5d44-565b-4227-8a9e-633e8cd0a9a1",
@@ -21,5 +10,31 @@
       "https://en.wikipedia.org/wiki/Gaza_genocide"
     ],
     "isEmergency": true
+  },
+  {
+    "longitude": 80.32072347731804,
+    "latitude": 8.948710602137922,
+    "id": "78a1e385-4292-4aa2-aa0f-dc44e8e0cb38",
+    "title": "Tropical Cyclone Dikeledi",
+    "description": "On 11 January, tropical cyclone DIKELEDI passed over the far northern Madagascar, on the following day it passed south of Mayotte (France) and Comoros. On 13 January at 6.00 UTC its centre was located offshore over the Mozambique Channel, approximately 75 km east of the coast of the Nampula province, northeastern Mozambique, with maximum sustained winds of 137 km/h.",
+    "imageUrl": "https://images.unsplash.com/photo-1564412458052-005f63484a94?q=80&w=2096&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "links": [
+      "https://reliefweb.int/disaster/tc-2025-000009-mdg",
+      "https://www.copernicus.eu/en/media/image-day-gallery/tropical-cyclone-dikeledi"
+    ],
+    "isEmergency": true
+  },
+  {
+    "longitude": -118.04659608000796,
+    "latitude": 34.169323895345386,
+    "id": "145fa22a-fcb3-42c2-a5d7-cbdcb4f0631b",
+    "title": "Greater Los Angeles wildfires",
+    "description": "Fueled by powerful winds and dry conditions, a series of ferocious wildfires erupted last week and roared across the Los Angeles area. \nFires across the Los Angeles area have killed at least 27 people, destroyed more than 12,000 structures and charred more than 60 square miles. The Palisades and Eaton wildfires continue to burn today.\nWith fire containment improving and winds dying down, some residents are being allowed back into neighborhoods devastated by the Palisades.\n",
+    "imageUrl": "https://i.abcnewsfe.com/a/924c36f4-529b-4040-a7f6-fc95f9cd3238/los-angeles-fire-gty-lv-250107-2_1736301851297_hpMain.jpg",
+    "links": [
+      "https://www.cbsnews.com/live-updates/la-fires-southern-california-containment-efforts/",
+      "https://www.latimes.com/california/live/2025-01-18/fire-winds-los-angeles-california-eaton-altadena-palisades-updates"
+    ],
+    "isEmergency": false
   }
 ]
