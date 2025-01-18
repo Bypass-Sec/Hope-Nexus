@@ -99,14 +99,14 @@ export default function InteractiveMap() {
 
   if (isLoading) {
     return (
-      <div className="relative w-full h-[600px] rounded-lg overflow-hidden flex items-center justify-center bg-gray-100">
+      <div className="relative w-full h-full rounded-lg overflow-hidden flex items-center justify-center bg-gray-100">
         <div className="text-black text-xl">Loading map data...</div>
       </div>
     )
   }
 
   return (
-    <div className="relative w-[95%] h-[600px] rounded-lg overflow-hidden mx-auto">
+    <div className="relative w-full h-full rounded-lg overflow-hidden mx-auto">
       <div className="absolute top-4 left-4 z-10 bg-black/75 rounded-md text-white backdrop-blur-md p-2"> 
         <label className="flex items-center space-x-2 cursor-pointer">
           <input
@@ -168,7 +168,7 @@ export default function InteractiveMap() {
       )}
 
       {selectedMarker && (
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/85 backdrop-blur-md rounded-lg shadow-xl max-w-md w-96 transform transition-all duration-300 ease-in-out max-h-[80vh] flex flex-col">
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/85 backdrop-blur-md rounded-lg shadow-xl max-w-md w-96 transform transition-all duration-300 ease-in-out max-h-[80vh] flex flex-col">
           {selectedMarker.imageUrl && (
             <div className="w-full h-48 flex-shrink-0">
               <img
