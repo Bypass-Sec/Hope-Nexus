@@ -9,5 +9,17 @@
     "links": [
       "https://www.nbcnews.com/news/us-news/photos-los-angeles-palisades-scale-california-fires-rcna186941"
     ]
+  },
+  {
+    "longitude": 34.45488596534139,
+    "latitude": 31.49269676500711,
+    "id": "d48c5d44-565b-4227-8a9e-633e8cd0a9a1",
+    "title": "Gaza Genocide",
+    "description": "According to a United Nations agency and a growing number of experts and rights organisations, including Amnesty International and Human Rights Watch, Israel has committed genocidal acts against the Palestinian people during its ongoing invasion and bombing of the Gaza Strip as part of the Israel–Hamas war.",
+    "imageUrl": "https://www.reuters.com/resizer/v2/4VC6MRSFRBNZNHCSKNSADVEPEY.jpg?auth=154666272c28e515eed37b8368a47d6ae0edd776100d7492683f3ebc0e619d19&width=3855&quality=80",
+    "links": [
+      "https://en.wikipedia.org/wiki/Gaza_genocide"
+    ],
+    "isEmergency": true
   }
 ]

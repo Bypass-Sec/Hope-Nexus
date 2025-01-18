@@ -2,11 +2,11 @@
 
 import React, { useRef, useCallback, useState, useEffect } from 'react'
 import Map, { Marker, NavigationControl, ScaleControl } from 'react-map-gl'
-import { MapPin, X } from 'lucide-react'
+import { MapPin, X, AlertTriangle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-// Add this function at the top of the file, after imports
 function generateUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     const r = Math.random() * 16 | 0;
@@ -14,6 +14,16 @@ function generateUUID() {
     return v.toString(16);
   });
 }
+
+const MarkerIcon = ({ isEmergency }) => (
+  <Image
+    src={isEmergency ? '/location_marker_emergency.svg' : '/location_marker.svg'}
+    width={24}
+    height={24}
+    alt="Location marker"
+    className="hover:scale-110 transition-transform"
+  />
+)
 
 export default function InteractiveMap() {
   const [markers, setMarkers] = useState([])
@@ -81,8 +91,8 @@ export default function InteractiveMap() {
     setSelectedMarker(selectedMarker?.id === marker.id ? null : marker)
   }, [selectedMarker])
 
-  const handleNewMarkerSubmit = async (markerData, title, description, imageUrl, links) => {
-    const newMarker = { ...markerData, title, description, imageUrl, links }
+  const handleNewMarkerSubmit = async (markerData, title, description, imageUrl, links, isEmergency) => {
+    const newMarker = { ...markerData, title, description, imageUrl, links, isEmergency }
     try {
       const response = await fetch('/api/markers', {
         method: 'POST',
@@ -107,8 +117,8 @@ export default function InteractiveMap() {
   }
 
   return (
-    <div className="relative w-full h-full rounded-lg overflow-hidden mx-auto">
-      <div className="absolute bottom-4 left-4 z-10 bg-black/75 rounded-md text-white backdrop-blur-md p-2"> 
+    <div className="relative w-full h-full overflow-hidden mx-auto">
+      <div className="absolute bottom-4 left-4 z-10 bg-black/75 text-white backdrop-blur-md p-2"> 
         <label className="flex items-center space-x-2 cursor-pointer">
           <input
             type="checkbox"
@@ -146,10 +156,7 @@ export default function InteractiveMap() {
             anchor="bottom"
             onClick={(e) => handleMarkerClick(e, marker)}
           >
-            <MapPin 
-              className={`w-6 h-6 text-blue-500 ${interactionsEnabled ? 'hover:text-blue-700 cursor-pointer' : ''} transition-colors`}
-              aria-label="Map marker"
-            />
+            <MarkerIcon isEmergency={marker.isEmergency} />
           </Marker>
         ))}
       </Map>
@@ -159,9 +166,13 @@ export default function InteractiveMap() {
           <div className="bg-black/85 border-white/50 backdrop-blur-md rounded-lg p-6 w-[600px] shadow-xl">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg text-white font-semibold">New Marker</h3>
-              <button onClick={() => setNewMarkerModal(null)}>
+              <motion.button 
+                onClick={() => setNewMarkerModal(null)}
+                whileHover={{ rotate: 90 }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+              >
                 <X className="w-5 h-5" />  
-              </button>
+              </motion.button>
             </div>
             <NewMarkerForm marker={newMarkerModal} onSubmit={handleNewMarkerSubmit} />
           </div>
@@ -175,7 +186,14 @@ export default function InteractiveMap() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", damping: 20, stiffness: 100 }}
-            className="absolute left-0 top-[-1px] bottom-0 w-1/4 bg-black/85 backdrop-blur-md shadow-2xl flex flex-col"
+            className={`absolute left-0 top-[-1px] bottom-0 w-1/4 backdrop-blur-md shadow-2xl flex flex-col
+              ${selectedMarker.isEmergency 
+                ? 'bg-gradient-to-b from-black/85 to-orange-950/85 border-r-2' 
+                : 'bg-black/85'
+              }`}
+            style={selectedMarker.isEmergency ? {
+              borderImage: 'linear-gradient(to bottom, #ef4444, #f97316) 1'
+            } : {}}
           >
             {selectedMarker.imageUrl && (
               <div className="w-full h-48 flex-shrink-0">
@@ -187,53 +205,74 @@ export default function InteractiveMap() {
               </div>
             )}
             
-            <div className="p-6 overflow-y-auto overflow-x-hidden flex-1">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-semibold text-xl text-white break-words mr-2">{selectedMarker.title}</h3>
-                <button 
-                  onClick={() => setSelectedMarker(null)}
-                  className="text-gray-300 hover:text-white transition-colors"
-                  aria-label="Close"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="mb-4">
-                <p className="text-gray-300 text-base leading-relaxed break-words">{selectedMarker.description}</p>
-              </div>
-
-              {selectedMarker.links && selectedMarker.links.length > 0 && (
-                <div className="mb-4">
-                  <h4 className="font-semibold text-sm mb-2 text-white">Links:</h4>
-                  <ul className="space-y-1">
-                    {selectedMarker.links.map((link, index) => (
-                      <li key={index} className="break-words">
-                        <a
-                          href={link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sky-400 hover:text-sky-300 hover:underline text-sm inline-block"
-                        >
-                          {link}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+            <div className="flex flex-col h-full">
+              <div className="p-6 overflow-y-auto flex-1">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-bold text-3xl text-white break-words mr-2">{selectedMarker.title}</h3>
+                  <motion.button 
+                    onClick={() => setSelectedMarker(null)}
+                    whileHover={{ rotate: 90 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                    className="text-gray-300 hover:text-white"
+                    aria-label="Close"
+                  >
+                    <X className="w-5 h-5" />
+                  </motion.button>
                 </div>
-              )}
 
-              {interactionsEnabled && (
-                <button 
-                  onClick={() => {
-                    removeMarker(selectedMarker.id)
-                    setSelectedMarker(null)
-                  }}
-                  className="w-full mt-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
-                >
-                  Delete Marker
-                </button>
-              )}
+                {selectedMarker.isEmergency && (
+                  <div className="mb-4 inline-flex items-center px-4 py-2 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500">
+                    <span className="text-white text-sm font-bold">This Crisis is an emergency!</span>
+                  </div>
+                )}
+
+                <div className="mb-4">
+                  <p className="text-gray-300 text-base leading-relaxed break-words">{selectedMarker.description}</p>
+                </div>
+
+                {selectedMarker.links && selectedMarker.links.length > 0 && (
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-sm mb-2 text-white">Links:</h4>
+                    <ul className="space-y-1">
+                      {selectedMarker.links.map((link, index) => (
+                        <li key={index} className="break-words">
+                          <a
+                            href={link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sky-400 hover:text-sky-300 hover:underline text-sm inline-block"
+                          >
+                            {link}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              <div className="p-6 pt-0 mt-auto">
+                {interactionsEnabled ? (  // this checks if the user is allowed to tamper with the map or not.
+                  <button 
+                    onClick={() => {
+                      removeMarker(selectedMarker.id) // delete button
+                      setSelectedMarker(null)
+                    }}
+                    className="w-full bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
+                  >
+                    Delete Marker
+                  </button>
+                ) : (
+                  <a 
+                    href="https://buy.stripe.com/test_fZe8x9dXrfCU9qg9AE" // donate button
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full h-20 bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2 text-2xl font-semibold"
+                    >
+                    Make a Donation
+                  </a>
+                )}
+              </div>
             </div>
           </motion.div>
         )}
@@ -248,6 +287,7 @@ function NewMarkerForm({ marker, onSubmit }) {
   const [description, setDescription] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [links, setLinks] = useState([''])
+  const [isEmergency, setIsEmergency] = useState(false)
 
   const addLinkField = () => {
     setLinks([...links, ''])
@@ -267,7 +307,7 @@ function NewMarkerForm({ marker, onSubmit }) {
     <form 
       onSubmit={(e) => {
         e.preventDefault()
-        onSubmit(marker, title, description, imageUrl, links.filter(link => link.trim() !== ''))
+        onSubmit(marker, title, description, imageUrl, links.filter(link => link.trim() !== ''), isEmergency)
       }}
       className="space-y-4"
     >
@@ -338,6 +378,21 @@ function NewMarkerForm({ marker, onSubmit }) {
         >
           + Add another link
         </button>
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <label className="flex items-center space-x-2 text-white cursor-pointer">
+          <input
+            type="checkbox"
+            checked={isEmergency}
+            onChange={(e) => setIsEmergency(e.target.checked)}
+            className="form-checkbox h-4 w-4 text-red-500"
+          />
+          <span className="text-sm font-medium flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-red-500" />
+            Mark as Emergency
+          </span>
+        </label>
       </div>
 
       <button
