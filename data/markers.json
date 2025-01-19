@@ -25,16 +25,55 @@
     "isEmergency": true
   },
   {
-    "longitude": -118.04659608000796,
-    "latitude": 34.169323895345386,
-    "id": "145fa22a-fcb3-42c2-a5d7-cbdcb4f0631b",
-    "title": "Greater Los Angeles wildfires",
-    "description": "Fueled by powerful winds and dry conditions, a series of ferocious wildfires erupted last week and roared across the Los Angeles area. \nFires across the Los Angeles area have killed at least 27 people, destroyed more than 12,000 structures and charred more than 60 square miles. The Palisades and Eaton wildfires continue to burn today.\nWith fire containment improving and winds dying down, some residents are being allowed back into neighborhoods devastated by the Palisades.\n",
-    "imageUrl": "https://i.abcnewsfe.com/a/924c36f4-529b-4040-a7f6-fc95f9cd3238/los-angeles-fire-gty-lv-250107-2_1736301851297_hpMain.jpg",
+    "longitude": 36.334789787378924,
+    "latitude": 33.494946971362666,
+    "id": "ec3cfcb6-fd33-41e2-ac41-43511ed1f8dd",
+    "title": "Syrian Civil War",
+    "description": "The Syrian civil war is an ongoing multi-sided conflict in Syria involving various state-sponsored and non-state actors. In March 2011, popular discontent with the Ba'athist regime ruled by Bashar al-Assad triggered large-scale protests and pro-democracy rallies across Syria, as part of the wider Arab Spring protests in the region. After months of crackdown by the government's security apparatus, various armed rebel groups such as the Free Syrian Army began forming across the country, marking the beginning of the Syrian insurgency. By mid-2012, the insurgency had escalated into a full-blown civil war. ",
+    "imageUrl": "https://images.unsplash.com/photo-1659781044995-1c68c81dcc67?q=80&w=2016&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "links": [
-      "https://www.cbsnews.com/live-updates/la-fires-southern-california-containment-efforts/",
-      "https://www.latimes.com/california/live/2025-01-18/fire-winds-los-angeles-california-eaton-altadena-palisades-updates"
+      "https://en.wikipedia.org/wiki/Syrian_civil_war",
+      "https://www.cfr.org/article/syrias-civil-war",
+      "https://syria.liveuamap.com/"
     ],
     "isEmergency": false
+  },
+  {
+    "longitude": 30.660613588892915,
+    "latitude": 50.361808885884216,
+    "id": "dee894ca-bd04-4fbe-8ec2-dd128af85fa5",
+    "title": "Russo-Ukranian War",
+    "description": "The Russo-Ukrainian War[d] began in February 2014. Following Ukraine's Revolution of Dignity, Russia occupied and annexed Crimea from Ukraine and supported pro-Russian separatists fighting the Ukrainian military in the Donbas War. These first eight years of conflict also included naval incidents and cyberwarfare. In February 2022, Russia launched a full-scale invasion of Ukraine and began occupying more of the country, starting the biggest conflict in Europe since World War II. The war has resulted in a refugee crisis and tens of thousands of deaths. ",
+    "imageUrl": "https://images.unsplash.com/photo-1675030743856-7c335faf8665?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "links": [
+      "https://www.aljazeera.com/news/2025/1/18/russia-ukraine-war-list-of-key-events-day-1059",
+      "https://en.wikipedia.org/wiki/Russo-Ukrainian_War"
+    ],
+    "isEmergency": false
+  },
+  {
+    "longitude": 46.73203922542427,
+    "latitude": 4.996428137239306,
+    "id": "5f8b1606-ad7b-4f22-8fd2-2439c113331e",
+    "title": "Hunger in Somalia",
+    "description": "Once again, Somalia has been named the hungriest country in the world, per the 2024 Global Hunger Index, after previously holding this rank in 2021. \nThe country has faced a protracted hunger crisis driven by ongoing conflict, economic challenges, and the climate crisis — all in the context of a government that has limited capacity for responding to these issues. This has left over half of the population (51.3%) undernourished, the second-highest rate of undernourishment in the world in 2024 (second only to North Korea). It has the third-highest child mortality rate (10.6%), and the seventh-highest child wasting rate (11.8%). ",
+    "imageUrl": "https://admin.concern.net/sites/default/files/styles/1120x630/public/media/images/2023-09/concern-rs66622-somalia-mogadishu-clinic.webp?changed=2024-10-22T14:45:26+00:00",
+    "links": [
+      "https://www.concern.net/news/hunger-in-somalia"
+    ],
+    "isEmergency": false
+  },
+  {
+    "longitude": -118.24011511719773,
+    "latitude": 34.048976426996916,
+    "id": "0cca7fdf-c6d1-4261-b4d4-d727ef5043b6",
+    "title": "Greater Los Angeles Wildfires",
+    "description": "Fueled by powerful winds and dry conditions, a series of ferocious wildfires erupted last week and roared across the Los Angeles area. Fires across the Los Angeles area have killed at least 27 people, destroyed more than 12,000 structures and charred more than 60 square miles. The Palisades and Eaton wildfires continue to burn today. With fire containment improving and winds dying down, some residents are being allowed back into neighborhoods devastated by the Palisades. ",
+    "imageUrl": "https://i.abcnewsfe.com/a/924c36f4-529b-4040-a7f6-fc95f9cd3238/los-angeles-fire-gty-lv-250107-2_1736301851297_hpMain.jpg",
+    "links": [
+      " https://www.cbsnews.com/live-updates/la-fires-southern-california-containment-efforts/",
+      " https://www.latimes.com/california/live/2025-01-18/fire-winds-los-angeles-california-eaton-altadena-palisades-updates"
+    ],
+    "isEmergency": true
   }
 ]
