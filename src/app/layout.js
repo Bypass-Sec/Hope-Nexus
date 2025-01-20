@@ -1,9 +1,9 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import Navbar from 'src/components/Navbar';
-import AuthProvider from 'src/components/AuthProvider';
-import 'src/styles/globals.css';
-import 'src/styles/SignInStyles.css';
+import Navbar from '../components/Navbar';
+import AuthProvider from '../components/AuthProvider';
+import '../styles/globals.css';
+import '../styles/SignInStyles.css';
 
 // do not cache this layout
 export const revalidate = 0;
