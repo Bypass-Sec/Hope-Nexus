@@ -93,11 +93,11 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
           </DialogTrigger>
           <DialogContent className="max-w-3xl">
             <DialogHeader>
-              <DialogTitle>Create a new forum post</DialogTitle>
+              <DialogTitle className='text-black'>Create a new forum post</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="title">Title</Label>
+                <Label htmlFor="title" className='text-black'>Title</Label>
                 <Input 
                   id="title" 
                   value={title} 
@@ -106,7 +106,7 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
                 />
               </div>
               <div>
-                <Label htmlFor="content">Content</Label>
+                <Label htmlFor="content" className='text-black'>Content</Label>
                 <Textarea 
                   id="content" 
                   value={content} 
@@ -115,7 +115,7 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
                 />
               </div>
               <div>
-                <Label>Tags</Label>
+                <Label className='text-black'>Tags</Label>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {tags.map((tag) => (
                     <Badge
@@ -132,7 +132,7 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
                 </div>
               </div>
               <div>
-                <Label>Image URLs</Label>
+                <Label className='text-black'>Image URLs</Label>
                 {imageUrls.map((url, index) => (
                   <div key={index} className="flex items-center mt-2">
                     <Input
