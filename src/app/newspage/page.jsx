@@ -18,6 +18,9 @@ export default async function NewsPage() {
         <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl font-bold z-2 text-white text-center">
           Latest News
         </h1>
+        <p className="absolute top-[60%] left-1/2 transform -translate-x-1/2 text-xl text-slate-200 text-center mt-4 max-w-2xl">
+          Stay informed with updates from around the world
+        </p>
       </div>
 
       {/* Content Container */}

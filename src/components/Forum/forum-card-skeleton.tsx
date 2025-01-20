@@ -2,18 +2,18 @@ import { Card, CardHeader, CardContent, CardFooter } from "../Forum/ui/card"
 
 export function ForumCardSkeleton() {
   return (
-    <Card className="mb-4 bg-gray-900 text-white border-0">
+    <Card className="mb-4 bg-white text-slate-900 border border-slate-200">
       <CardHeader>
         <div className="flex items-center space-x-4">
-          <div className="h-12 w-12 rounded-full bg-gray-800 animate-pulse" />
+          <div className="h-12 w-12 rounded-full bg-slate-100 animate-pulse" />
           <div className="space-y-2">
-            <div className="h-4 w-48 bg-gray-800 rounded animate-pulse" />
-            <div className="h-3 w-32 bg-gray-800 rounded animate-pulse" />
+            <div className="h-4 w-48 bg-slate-100 rounded animate-pulse" />
+            <div className="h-3 w-32 bg-slate-100 rounded animate-pulse" />
           </div>
         </div>
         <div className="flex space-x-2 mt-2">
-          <div className="h-5 w-16 bg-gray-800 rounded-full animate-pulse" />
-          <div className="h-5 w-16 bg-gray-800 rounded-full animate-pulse" />
+          <div className="h-5 w-16 bg-slate-100 rounded-full animate-pulse" />
+          <div className="h-5 w-16 bg-slate-100 rounded-full animate-pulse" />
         </div>
       </CardHeader>
       <CardContent>

@@ -61,17 +61,33 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
   }
 
   return (
-    <div className="mb-8 space-y-4 text-white">
-      <div className="flex justify-between items-center">
-        <div className="flex items-baseline gap-2">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-shadow duration-300 mb-2">Forums</h1>
-          <span className="text-md text-gray-400">
-            by <a href="https://github.com/SnowyCrest" className="hover:text-purple-400 transition-colors">SnowyCrest</a>
-          </span>
+    <div className="mb-8 space-y-6 text-slate-900"> 
+      <div className="flex items-center gap-4 mt-20"> 
+        <div className="relative flex-1">
+          <Input 
+            type="search" 
+            placeholder="   Search forums..." 
+            className="pl-10 bg-white border-slate-200 text-slate-900 placeholder-slate-400 h-11" /* Added h-11 to match button */
+            onChange={(e) => onSearch(e.target.value)}
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
         </div>
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-none shadow-lg shadow-purple-500/20">
+            <Button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 h-11" size="lg">
               Create New Post
             </Button>
           </DialogTrigger>
@@ -144,28 +160,6 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
             </form>
           </DialogContent>
         </Dialog>
-      </div>
-      <div className="relative">
-        <Input 
-          type="search" 
-          placeholder="Search forums..." 
-          className="pl-10 bg-gray-900 border-gray-800 text-white placeholder-gray-400" 
-          onChange={(e) => onSearch(e.target.value)}
-        />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
       </div>
       <div className="flex flex-wrap gap-2 items-center">
         {tags.map((tag) => (
