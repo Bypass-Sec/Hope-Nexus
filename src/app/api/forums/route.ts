@@ -1,59 +1,45 @@
 import { NextResponse } from 'next/server'
+import { promises as fs } from 'fs'
+import path from 'path'
 
-let forumPosts = [
-  {
-    id: 1,
-    title: "Welcome to our new forums!",
-    author: "Admin",
-    authorAvatar: "/placeholder.svg?height=40&width=40",
-    date: "2023-06-01",
-    content: "We're excited to launch our new forums. Feel free to start discussions, ask questions, and connect with other members!",
-    tags: ["announcement", "welcome"],
-    replies: 5,
-    likes: 10,
-    messages: [
-      { id: 1, author: "User1", content: "Great to be here!" },
-      { id: 2, author: "User2", content: "Looking forward to the discussions!" }
-    ],
-    imageUrls: [],
-    isPinned: false,
-  },
-  {
-    id: 2,
-    title: "Tips for new members",
-    author: "Moderator",
-    authorAvatar: "/placeholder.svg?height=40&width=40",
-    date: "2023-06-02",
-    content: "Here are some tips to get started: 1) Introduce yourself, 2) Read the rules, 3) Be respectful to others.",
-    tags: ["tips", "newbies"],
-    replies: 3,
-    likes: 7,
-    messages: [
-      { id: 3, author: "NewUser", content: "Thanks for the tips!" }
-    ],
-    imageUrls: [],
-    isPinned: false,
-  },
-  {
-    id: 3,
-    title: "Upcoming community events",
-    author: "EventCoordinator",
-    authorAvatar: "/placeholder.svg?height=40&width=40",
-    date: "2023-06-03",
-    content: "We have some exciting community events planned for the next month. Stay tuned for more information!",
-    tags: ["events", "community"],
-    replies: 8,
-    likes: 15,
-    messages: [
-      { id: 4, author: "User3", content: "Can't wait to hear more!" },
-      { id: 5, author: "User4", content: "Will there be any online events?" }
-    ],
-    imageUrls: [],
-    isPinned: false,
-  }
-]
+interface Message {
+  id: number
+  author: string
+  content: string
+}
 
-let allTags = ["announcement", "welcome", "tips", "newbies", "events", "community"]
+interface ForumPost {
+  id: number
+  title: string
+  author: string
+  authorAvatar: string
+  date: string
+  content: string
+  tags: string[]
+  replies: number
+  likes: number
+  messages: Message[]
+  imageUrls: string[]
+  isPinned: boolean
+}
+
+interface ForumData {
+  forumPosts: ForumPost[]
+  allTags: string[]
+}
+
+// Helper function to read the JSON file
+async function getForumData(): Promise<ForumData> {
+  const filePath = path.join(process.cwd(), 'data', 'forumPosts.json')
+  const jsonData = await fs.readFile(filePath, 'utf8')
+  return JSON.parse(jsonData)
+}
+
+// Helper function to write to the JSON file
+async function saveForumData(data: ForumData): Promise<void> {
+  const filePath = path.join(process.cwd(), 'data', 'forumPosts.json')
+  await fs.writeFile(filePath, JSON.stringify(data, null, 2))
+}
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
@@ -62,77 +48,87 @@ export async function GET(request: Request) {
   const start = (page - 1) * limit
   const end = start + limit
 
-  const paginatedPosts = forumPosts.slice(start, end)
+  const data = await getForumData()
+  const paginatedPosts = data.forumPosts.slice(start, end)
+  
   return NextResponse.json({ 
     posts: paginatedPosts, 
-    tags: allTags, 
-    totalPosts: forumPosts.length,
+    tags: data.allTags, 
+    totalPosts: data.forumPosts.length,
     currentPage: page,
-    totalPages: Math.ceil(forumPosts.length / limit)
+    totalPages: Math.ceil(data.forumPosts.length / limit)
   })
 }
 
 export async function POST(request: Request) {
-  const data = await request.json()
+  const requestData = await request.json()
+  const data = await getForumData()
 
-  switch (data.type) {
+  switch (requestData.type) {
     case 'newPost':
-      const newPost = {
-        id: forumPosts.length + 1,
-        title: data.title,
+      const newPost: ForumPost = {
+        id: data.forumPosts.length + 1,
+        title: requestData.title,
         author: "Current User",
         authorAvatar: "/placeholder.svg?height=40&width=40",
         date: new Date().toISOString().split('T')[0],
-        content: data.content,
-        tags: data.tags,
+        content: requestData.content,
+        tags: requestData.tags,
         replies: 0,
         likes: 0,
         messages: [],
-        imageUrls: data.imageUrls || [],
+        imageUrls: requestData.imageUrls || [],
         isPinned: false,
       }
-      forumPosts.push(newPost)
+      data.forumPosts.push(newPost)
+      await saveForumData(data)
       return NextResponse.json({ success: true, post: newPost })
 
     case 'deletePost':
-      forumPosts = forumPosts.filter(post => post.id !== data.postId)
+      data.forumPosts = data.forumPosts.filter(post => post.id !== requestData.postId)
+      await saveForumData(data)
       return NextResponse.json({ success: true })
 
     case 'newMessage':
-      const { postId, message } = data
-      const post = forumPosts.find(p => p.id === postId)
+      const post = data.forumPosts.find((p: ForumPost) => p.id === requestData.postId)
       if (post) {
-        const newMessageId = post.messages.length > 0 ? Math.max(...post.messages.map(m => m.id)) + 1 : 1
-        post.messages.push({ id: newMessageId, ...message })
+        const newMessageId = post.messages.length > 0 ? 
+          Math.max(...post.messages.map((m: Message) => m.id)) + 1 : 1
+        post.messages.push({ id: newMessageId, ...requestData.message })
         post.replies += 1
+        await saveForumData(data)
       }
       return NextResponse.json({ success: true })
 
     case 'deleteMessage':
-      const postToUpdate = forumPosts.find(p => p.id === data.postId)
+      const postToUpdate = data.forumPosts.find((p: ForumPost) => p.id === requestData.postId)
       if (postToUpdate) {
-        postToUpdate.messages = postToUpdate.messages.filter(m => m.id !== data.messageId)
+        postToUpdate.messages = postToUpdate.messages.filter((m: Message) => m.id !== requestData.messageId)
         postToUpdate.replies -= 1
+        await saveForumData(data)
       }
       return NextResponse.json({ success: true })
 
     case 'toggleLike':
-      const postToLike = forumPosts.find(p => p.id === data.postId)
+      const postToLike = data.forumPosts.find((p: ForumPost) => p.id === requestData.postId)
       if (postToLike) {
-        postToLike.likes += data.isLiked ? -1 : 1
+        postToLike.likes += requestData.isLiked ? -1 : 1
+        await saveForumData(data)
       }
       return NextResponse.json({ success: true })
 
     case 'addTag':
-      if (!allTags.includes(data.tag)) {
-        allTags.push(data.tag)
+      if (!data.allTags.includes(requestData.tag)) {
+        data.allTags.push(requestData.tag)
+        await saveForumData(data)
       }
-      return NextResponse.json({ success: true, tags: allTags })
+      return NextResponse.json({ success: true, tags: data.allTags })
 
     case 'togglePin':
-      const postToPin = forumPosts.find(p => p.id === data.postId)
+      const postToPin = data.forumPosts.find((p: ForumPost) => p.id === requestData.postId)
       if (postToPin) {
-        postToPin.isPinned = data.isPinned
+        postToPin.isPinned = requestData.isPinned
+        await saveForumData(data)
       }
       return NextResponse.json({ success: true })
 

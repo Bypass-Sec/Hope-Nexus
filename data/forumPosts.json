@@ -1,0 +1,276 @@
+{
+  "forumPosts": [
+    {
+      "id": 1,
+      "title": "Welcome to our new forums!",
+      "author": "Admin",
+      "authorAvatar": "/placeholder.svg?height=40&width=40",
+      "date": "2023-06-01",
+      "content": "We're excited to launch our new forums. Feel free to start discussions, ask questions, and connect with other members!",
+      "tags": [
+        "announcement",
+        "welcome"
+      ],
+      "replies": 5,
+      "likes": 10,
+      "messages": [
+        {
+          "id": 1,
+          "author": "User1",
+          "content": "Great to be here!"
+        },
+        {
+          "id": 2,
+          "author": "User2",
+          "content": "Looking forward to the discussions!"
+        }
+      ],
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1515187029135-18ee286d815b",
+        "https://images.unsplash.com/photo-1546188994-07c34f6e5e1b"
+      ],
+      "isPinned": false
+    },
+    {
+      "id": 2,
+      "title": "Tips for new members",
+      "author": "Moderator",
+      "authorAvatar": "/placeholder.svg?height=40&width=40",
+      "date": "2023-06-02",
+      "content": "Here are some tips to get started: 1) Introduce yourself, 2) Read the rules, 3) Be respectful to others.",
+      "tags": [
+        "tips",
+        "newbies"
+      ],
+      "replies": 3,
+      "likes": 7,
+      "messages": [
+        {
+          "id": 3,
+          "author": "NewUser",
+          "content": "Thanks for the tips!"
+        }
+      ],
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173"
+      ],
+      "isPinned": false
+    },
+    {
+      "id": 3,
+      "title": "Emergency Flood Relief Campaign",
+      "author": "CrisisTeam",
+      "authorAvatar": "/placeholder.svg?height=40&width=40",
+      "date": "2023-06-15",
+      "content": "We're launching an emergency campaign for flood victims. Your donations will provide immediate relief including food, clean water, and temporary shelter.",
+      "tags": [
+        "emergency",
+        "donations",
+        "flood-relief"
+      ],
+      "replies": 3,
+      "likes": 45,
+      "messages": [
+        {
+          "id": 4,
+          "author": "Helper1",
+          "content": "Just donated! Hope it helps."
+        },
+        {
+          "id": 5,
+          "author": "CommunityCare",
+          "content": "We'll be organizing a supply drive this weekend."
+        },
+        {
+          "id": 6,
+          "author": "LocalBusiness",
+          "content": "Our store will match all donations up to $1000."
+        }
+      ],
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1547683905-f686c993aae5",
+        "https://images.unsplash.com/photo-1599059813005-11265ba4b4ce"
+      ],
+      "isPinned": true
+    },
+    {
+      "id": 4,
+      "title": "Impact Report: Q2 2023",
+      "author": "Admin",
+      "authorAvatar": "/placeholder.svg?height=40&width=40",
+      "date": "2023-06-20",
+      "content": "Detailed breakdown of how your donations have helped our community in Q2 2023. Total funds raised: $25,000. Lives impacted: 500+",
+      "tags": [
+        "impact-report",
+        "transparency",
+        "donations"
+      ],
+      "replies": 2,
+      "likes": 32,
+      "messages": [
+        {
+          "id": 7,
+          "author": "Donor123",
+          "content": "Great to see the impact!"
+        },
+        {
+          "id": 8,
+          "author": "CommunityMember",
+          "content": "Thank you for the transparency."
+        }
+      ],
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6"
+      ],
+      "isPinned": false
+    },
+    {
+      "id": 5,
+      "title": "Volunteer Registration: Crisis Response Team",
+      "author": "Moderator",
+      "authorAvatar": "/placeholder.svg?height=40&width=40",
+      "date": "2023-06-25",
+      "content": "We're forming a crisis response team. If you have experience in emergency response, medical care, or logistics, please register here.",
+      "tags": [
+        "volunteers",
+        "crisis-response",
+        "emergency"
+      ],
+      "replies": 1,
+      "likes": 15,
+      "messages": [
+        {
+          "id": 9,
+          "author": "EMT_volunteer",
+          "content": "Registered! I have 5 years of emergency medical experience."
+        }
+      ],
+      "imageUrls": [],
+      "isPinned": false
+    },
+    {
+      "id": 6,
+      "title": "Community Food Drive Success!",
+      "author": "EventCoordinator",
+      "authorAvatar": "/placeholder.svg?height=40&width=40",
+      "date": "2023-06-28",
+      "content": "Thanks to everyone who participated in our food drive! We collected over 2000 lbs of food for local families.",
+      "tags": [
+        "community",
+        "events",
+        "impact-report"
+      ],
+      "replies": 2,
+      "likes": 28,
+      "messages": [
+        {
+          "id": 10,
+          "author": "FoodBankRep",
+          "content": "This will help feed 100 families for a month. Thank you!"
+        },
+        {
+          "id": 11,
+          "author": "Volunteer22",
+          "content": "So proud of our community!"
+        }
+      ],
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c"
+      ],
+      "isPinned": false
+    },
+    {
+      "id": 7,
+      "title": "Upcoming Fundraising Gala - Save the Date",
+      "author": "EventPlanner",
+      "authorAvatar": "/placeholder.svg?height=40&width=40",
+      "date": "2023-06-30",
+      "content": "Mark your calendars for July 15th! Join us for an evening of entertainment and giving back to the community.",
+      "tags": [
+        "events",
+        "donations",
+        "community"
+      ],
+      "replies": 3,
+      "likes": 19,
+      "messages": [
+        {
+          "id": 12,
+          "author": "Guest1",
+          "content": "Already bought my tickets!"
+        },
+        {
+          "id": 13,
+          "author": "Sponsor1",
+          "content": "We'll be bringing some amazing auction items."
+        },
+        {
+          "id": 14,
+          "author": "Organizer",
+          "content": "Remember to RSVP by July 10th!"
+        }
+      ],
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622",
+        "https://images.unsplash.com/photo-1505236858219-8359eb29e329"
+      ],
+      "isPinned": false
+    },
+    {
+      "id": 8,
+      "title": "Crisis Response Training Workshop",
+      "author": "TrainingLead",
+      "authorAvatar": "/placeholder.svg?height=40&width=40",
+      "date": "2023-07-01",
+      "content": "Join us for a hands-on workshop on emergency response procedures. Perfect for new volunteers!",
+      "tags": [
+        "volunteers",
+        "crisis-response",
+        "events"
+      ],
+      "replies": 4,
+      "likes": 12,
+      "messages": [
+        {
+          "id": 15,
+          "author": "NewVolunteer",
+          "content": "Is this suitable for beginners?"
+        },
+        {
+          "id": 16,
+          "author": "TrainingLead",
+          "content": "Absolutely! We'll cover all the basics."
+        },
+        {
+          "id": 17,
+          "author": "EMT_Pro",
+          "content": "I can help with the medical training portion."
+        },
+        {
+          "id": 18,
+          "author": "Coordinator",
+          "content": "Don't forget to bring your ID for certification."
+        }
+      ],
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca"
+      ],
+      "isPinned": false
+    }
+  ],
+  "allTags": [
+    "announcement",
+    "welcome",
+    "tips",
+    "newbies",
+    "events",
+    "community",
+    "emergency",
+    "donations",
+    "flood-relief",
+    "impact-report",
+    "transparency",
+    "volunteers",
+    "crisis-response"
+  ]
+}
