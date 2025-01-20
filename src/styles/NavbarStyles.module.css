@@ -81,6 +81,7 @@
 .nav div.main_list ul li {
     height: 65px;
     padding: 0;
+    position: relative;
 }
 
 .nav div.main_list ul li a {
@@ -89,10 +90,30 @@
     line-height: 65px;
     font-size: 2rem;
     transition: color 0.3s ease;
+    position: relative;
 }
 
 .nav div.main_list ul li a:hover {
     color: #0093FA;
+}
+
+.nav div.main_list ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0px; 
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0093FA;
+    transition: width 0.3s ease;
+}
+
+.nav div.main_list ul li a.active {
+    color: #0093FA;
+}
+
+.nav div.main_list ul li a.active::after {
+    width: 100%;
 }
 
 .registerBtn {

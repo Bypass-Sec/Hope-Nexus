@@ -3,11 +3,13 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import styles from '../styles/NavbarStyles.module.css';
 
 const Navbar = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [isAffix, setIsAffix] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -26,6 +28,13 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/crisismap', label: 'Crisis Map' },
+    { href: '/newspage', label: 'News' },
+    { href: '/contact', label: 'Forums' },
+  ];
+
   return (
     <nav className={`${styles.nav} ${isHidden ? styles['nav--hidden'] : ''} ${isAffix ? styles.affix : ''} z-[10]`}>
       <div className={styles.navContainer}>
@@ -43,10 +52,16 @@ const Navbar = () => {
         
         <div className={styles.main_list}>
           <ul className={styles.navlinks}>
-            <li className='font-semibold'><Link href="/about">Home</Link></li>
-            <li className='font-semibold'><Link href="/crisismap">Crisis Map</Link></li>
-            <li className='font-semibold'><Link href="/newspage">News</Link></li>
-            <li className='font-semibold'><Link href="/contact">Forums</Link></li>
+            {navLinks.map(({ href, label }) => (
+              <li key={href} className='font-semibold'>
+                <Link 
+                  href={href}
+                  className={pathname === href ? styles.active : ''}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
