@@ -5,48 +5,34 @@ function TextCard({ heading, subheading, bodyText, imageUrl, linkUrl }) {
     return (
         <a
             href={linkUrl}
-            className="block mx-auto relative transform transition-transform duration-300 hover:scale-105"
-            style={{ maxWidth: 'calc(24rem + 96px)' }}
+            className="block h-full transform transition-all duration-300 hover:scale-[1.02]"
         >
-            {/* Card container */}
-            <div
-                className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow duration-300 flex flex-col"
-                style={{ height: '456px' }} 
-            >
+            <div className="h-full bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-slate-200">
                 {/* Image */}
-                <div className="mb-4">
+                <div className="aspect-video w-full overflow-hidden">
                     <img
                         src={imageUrl}
                         alt="News Image"
-                        className="w-full h-40 object-cover rounded-lg"
+                        className="w-full h-full object-cover"
                     />
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-col justify-between h-full">
-                    {/* Heading */}
-                    <h2 className="text-2xl font-bold mb-2 text-orange-500">
+                <div className="p-5 flex flex-col h-[calc(100%-33.33%)]">
+                    <h2 className="text-xl font-bold mb-2 text-blue-900 line-clamp-2">
                         {heading}
                     </h2>
 
-                    {/* Subheading */}
-                    <h3 className="text-lg font-semibold mb-4 text-orange-700">
+                    <p className="text-sm font-medium mb-3 text-orange-600">
                         {subheading}
-                    </h3>
+                    </p>
 
-                    {/* Body text */}
-                    <div
-                        className="text-slate-600 overflow-hidden"
-                        style={{
-                            height: '100%',
-                            display: '-webkit-box',         
-                            overflowY: 'hidden',            
-                            textOverflow: 'ellipsis',
-                            WebkitBoxOrient: 'vertical',   
-                            WebkitLineClamp: 3,            
-                        }}
-                    >
+                    <p className="text-slate-600 text-sm line-clamp-3 flex-grow">
                         {bodyText}
+                    </p>
+                    
+                    <div className="mt-4 text-blue-600 text-sm font-medium">
+                        Read more →
                     </div>
                 </div>
             </div>
