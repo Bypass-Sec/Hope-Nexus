@@ -8,6 +8,7 @@ import { Textarea } from "../../components/Forum/ui/textarea"
 import { X, Send } from 'lucide-react'
 import { ForumCardSkeleton } from '../../components/Forum/forum-card-skeleton'
 import { Checkbox } from "../../components/Forum/ui/checkbox"
+import Footer from '../../components/Footer'
 
 interface ForumPost {
   id: number
@@ -346,6 +347,7 @@ export default function ForumsPage() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import TextCard from '../../components/newscard';
+import Footer from '../../components/Footer';
 import fetchNews from '../../fetchnews';
 
 export default async function NewsPage() {
@@ -48,6 +49,7 @@ export default async function NewsPage() {
           </Suspense>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
