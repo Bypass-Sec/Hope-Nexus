@@ -245,7 +245,7 @@ export default function ForumsPage() {
         </p>
       </div>
 
-      <div className="fixed bottom-4 right-4 flex items-center space-x-2 bg-white shadow-md p-2 rounded-lg z-[60]">
+      <div className="fixed bottom-4 right-4 flex items-center space-x-2 bg-white shadow-md p-2 rounded-lg z-40">
         <Checkbox
           id="admin-mode"
           checked={isAdmin}
@@ -308,7 +308,7 @@ export default function ForumsPage() {
           </div>
         </div>
         {expandedPostId && expandedPost && (
-           <div className="w-1/3 bg-white border-l border-slate-200 p-4 fixed top-0 right-0 h-full overflow-y-auto z-40">
+           <div className="w-1/3 bg-white border-l border-slate-200 p-4 fixed top-0 right-0 h-full overflow-y-auto z-30">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">Messages</h3>
               <Button variant="ghost" size="icon" onClick={() => setExpandedPostId(null)}>

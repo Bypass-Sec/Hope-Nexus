@@ -32,7 +32,7 @@ export default function Footer() {
           <div className="relative flex flex-col md:flex-row items-center gap-4">
             <div className="md:absolute left-0">
               <a
-                href="https://github.com/yourusername/Hope-Nexus"
+                href="https://github.com/SnowyCrest/Hope-Nexus"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
