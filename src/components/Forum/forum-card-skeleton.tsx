@@ -18,14 +18,14 @@ export function ForumCardSkeleton() {
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
-          <div className="h-4 w-full bg-gray-800 rounded animate-pulse" />
-          <div className="h-4 w-5/6 bg-gray-800 rounded animate-pulse" />
+          <div className="h-4 w-full bg-slate-100 rounded animate-pulse" />
+          <div className="h-4 w-5/6 bg-slate-100 rounded animate-pulse" />
         </div>
       </CardContent>
       <CardFooter className="justify-between">
         <div className="flex space-x-4">
-          <div className="h-8 w-16 bg-gray-800 rounded animate-pulse" />
-          <div className="h-8 w-16 bg-gray-800 rounded animate-pulse" />
+          <div className="h-8 w-16 bg-slate-100 rounded animate-pulse" />
+          <div className="h-8 w-16 bg-slate-100 rounded animate-pulse" />
         </div>
       </CardFooter>
     </Card>

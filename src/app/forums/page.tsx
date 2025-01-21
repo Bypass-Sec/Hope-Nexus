@@ -228,9 +228,8 @@ export default function ForumsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Banner Image */}
-      <div className="w-full h-[40vh] relative">
+    <div className="min-h-screen bg-slate-50"> 
+      <div className="w-full h-[40vh] relative"> 
         <div className="absolute inset-0 bg-gradient-to-b from-blue-900/60 to-blue-950/80 z-1" />
         <img 
           src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop"
@@ -256,7 +255,7 @@ export default function ForumsPage() {
         </label>
       </div>
 
-      <div className="container mx-auto px-4 -mt-16 relative z-10">
+      <div className="container mx-auto px-4 -mt-20 relative z-10"> 
         <div className={`${expandedPostId ? 'w-2/3 pr-4' : 'w-full'}`}>
           <ForumHeader 
             tags={allTags} 
@@ -308,7 +307,7 @@ export default function ForumsPage() {
           </div>
         </div>
         {expandedPostId && expandedPost && (
-           <div className="w-1/3 bg-white border-l border-slate-200 p-4 fixed top-0 right-0 h-full overflow-y-auto z-30">
+           <div className="w-1/3 bg-white border-l border-slate-200 p-4 fixed top-20 right-0 h-[calc(100vh-5rem)] overflow-y-auto z-30">  {/* Changed top-16 to top-20 */}
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">Messages</h3>
               <Button variant="ghost" size="icon" onClick={() => setExpandedPostId(null)}>

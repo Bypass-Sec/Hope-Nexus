@@ -9,7 +9,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-r from-slate-950 to-indigo-950 relative mt-20">
+    <footer className="bg-gradient-to-r from-slate-950 to-indigo-950 relative">
       <div className="absolute inset-0 opacity-10">
       </div>
 

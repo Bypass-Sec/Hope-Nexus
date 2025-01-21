@@ -36,7 +36,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`${styles.nav} ${isHidden ? styles['nav--hidden'] : ''} ${isAffix ? styles.affix : ''} z-[10]`}>
+    <nav className={`${styles.nav} ${isHidden ? styles['nav--hidden'] : ''} ${isAffix ? styles.affix : ''} z-[9999]`}>
       <div className={styles.navContainer}>
         <div className={styles.logo}>
           <Link href="/">
