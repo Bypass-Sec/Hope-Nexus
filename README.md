@@ -24,11 +24,11 @@ These features in a single platform have not been replicated once before. Handli
 
 | Login                       | Crisis Map                        |
 | --------------------------  | --------------------------------- |
-| ![Login](/RegisterPage.png) | ![Crisis Map](/CrisisMap.png)     |
+| ![Login](./public/RegisterPage.png) | ![Crisis Map](./public/CrisisMap.png)     |
 
 | News                         | Forums                          | 
 | ---------------------------- | ------------------------------- | 
-| ![News](/NewsPage.png)       | ![Forums](/ForumsPage.png)      | 
+| ![News](./public/NewsPage.png)       | ![Forums](./public/ForumsPage.png)      | 
 
 ## Tech Stack
 
