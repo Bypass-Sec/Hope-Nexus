@@ -1,4 +1,4 @@
-![Hope Nexus Logo](./Logo_Banner.png)
+![Hope Nexus Logo](./public/Logo_Banner.png)
 
 # Hope Nexus
 
