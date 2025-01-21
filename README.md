@@ -86,3 +86,4 @@ To get started with Hope Nexus, follow these steps:
 ## Authors 👨‍💻
 - [SnowyCrest](https://github.com/SnowyCrest)
 - [found-sec](https://github.com/found-sec)
+- [tonkerbell](https://github.com/tonkerbell)
