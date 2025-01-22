@@ -154,6 +154,12 @@
 }
 
 @layer base {
+  .border-border {
+    @apply border-slate-300;
+  }
+}
+
+@layer base {
   * {
     @apply border-border;
   }
