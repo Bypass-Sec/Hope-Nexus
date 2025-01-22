@@ -66,14 +66,6 @@ To get started with Hope Nexus, follow these steps:
 
     Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-5. **Build for production**:
-    ```bash
-    npm run build
-    npm start
-    ```
-
-    The application will be available at [http://localhost:3000](http://localhost:3000).
-
 
 ## Authors 👨‍💻
 - [SnowyCrest](https://github.com/SnowyCrest)
