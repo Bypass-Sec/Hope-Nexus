@@ -37,9 +37,5 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ partners }) => (
   </section>
 )
 
-<<<<<<< HEAD
-export default PartnerSection
-=======
 export default PartnerSection
 
->>>>>>> 39e7b5142b474e9484fccd0833096ccb9d63347a

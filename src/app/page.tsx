@@ -44,9 +44,5 @@ export default async function Home() {
       <Footer />
     </main>
   )
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> 39e7b5142b474e9484fccd0833096ccb9d63347a
