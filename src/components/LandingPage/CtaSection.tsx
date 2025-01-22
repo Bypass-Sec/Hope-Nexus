@@ -27,9 +27,9 @@ export default function CtaSection() {
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link href="/auth/sign-up">
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-heading">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full font-heading">
                 Sign Up Now
-              </Button>
+              </button>
             </Link>
           </motion.div>
         </motion.div>
@@ -37,4 +37,3 @@ export default function CtaSection() {
     </section>
   )
 }
-

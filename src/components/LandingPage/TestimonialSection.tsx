@@ -44,7 +44,7 @@ export default function TestimonialSection() {
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-900 font-heading">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-orange-500 font-heading">
           Voices from the Field
         </h2>
         <AnimatedTestimonials testimonials={testimonials} />

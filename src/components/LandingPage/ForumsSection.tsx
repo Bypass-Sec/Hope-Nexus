@@ -26,7 +26,7 @@ export default function ForumsSection() {
               />
             </div>
             <div className="md:w-1/2 md:pl-8">
-              <h3 className="text-5xl font-bold mb-4 text-slate-900 font-heading">Discuss with individuals and non-profits alike</h3>
+              <h3 className="text-5xl font-bold mb-4 text-orange-500 font-heading">Discuss with individuals and non-profits alike</h3>
               <p className="text-slate-600 text-xl mb-4 font-body">
                 Connect with like-minded individuals, share ideas, and collaborate with nonprofits in our vibrant
                 community forums. Your voice matters in shaping a better future.
