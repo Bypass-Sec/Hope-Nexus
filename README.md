@@ -67,15 +67,6 @@ To get started with Hope Nexus, follow these steps:
     Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-## Authors 👨‍💻
-- [SnowyCrest](https://github.com/SnowyCrest)
-- [found-sec](https://github.com/found-sec)
-- [tonkerbell](https://github.com/tonkerbell)
-- [OmarAbdullah1-ux](https://github.com/OmarAbdullah1-ux).
-  
-- **Icons**: Tabler Icons
-- **Image Handling**: Next/Image
-
 ## Dependencies 📦
 
 - `next`
