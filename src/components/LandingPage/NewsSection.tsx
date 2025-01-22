@@ -12,14 +12,14 @@ export default function NewsSection() {
         <div className="bg-white p-6 md:p-8">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 md:pr-8">
-              <h3 className="text-5xl font-bold mb-4 text-slate-900 font-heading">Stay updated on what's happening</h3>
+              <h3 className="text-5xl font-bold mb-4 text-orange-500 font-heading">Stay updated on what's happening</h3>
               <p className="text-slate-600 text-xl mb-6 font-body">
                 A coalition of nonprofits joins forces to tackle water scarcity in developing regions. This groundbreaking initiative aims to provide clean water access to millions of people worldwide through sustainable infrastructure and community-led programs.
               </p>
               <Link href="/newspage">
-                <Button variant="default" className="bg-orange-500 hover:bg-orange-600 text-white font-heading">
+                <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full font-heading">
                   See the News
-                </Button>
+                </button>
               </Link>
             </div>
             <div className="md:w-1/2 mb-6 md:mb-0 relative h-96 md:h-[500px] w-full">
@@ -37,4 +37,3 @@ export default function NewsSection() {
     </section>
   )
 }
-

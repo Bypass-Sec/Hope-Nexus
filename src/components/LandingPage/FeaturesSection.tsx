@@ -13,7 +13,7 @@ export default function FeaturesSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-900 font-heading"
+          className="text-3xl md:text-4xl font-bold text-center mb-12 text-orange-500 font-heading"
         >
           Discover Our Features
         </motion.h2>
@@ -34,7 +34,7 @@ export default function FeaturesSection() {
               />
             </div>
             <div className="md:w-1/2 md:pl-8">
-              <h3 className="text-5xl font-bold mb-4 text-slate-900 font-heading">Crisis Map</h3>
+              <h3 className="text-5xl font-bold mb-4 text-orange-500 font-heading">Crisis Map</h3>
               <p className="text-slate-600 text-xl mb-4 font-body">
                 Our interactive Crisis Map allows users to explore global crises and take immediate action. Click on
                 crisis markers to view detailed information and select trusted nonprofits to support their relief
