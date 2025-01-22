@@ -33,21 +33,13 @@ These features in a single platform have not been replicated once before. Handli
 ## Tech Stack 🛠️
 
 - **Framework**: Next.js
-- **Database**: Supabase
-- **Styling**: Tailwind CSS
+- **Database**: Supabase    
+- **Styling**: Tailwind CSS & shadcn/ui
 - **Animations**: Framer Motion
-- **Icons**: Tabler Icons
-- **Image Handling**: Next/Image
-
-## Dependencies 📦
-
-- `next`
-- `react`
-- `react-dom`
-- `framer-motion`
-- `@tabler/icons-react`
-- `tailwindcss`
-- `supabase-js`
+- **Icons**: Tabler Icons & React Icons
+- **Crisis Map**: Mapbox GL
+- **News API**: Perigon
+- **Image Handling**: Next/Image (Images are from Unsplash)
 
 ## Installation and Execution 🚀
 
