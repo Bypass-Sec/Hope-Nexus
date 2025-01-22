@@ -11,7 +11,7 @@
         "announcement",
         "welcome"
       ],
-      "replies": 5,
+      "replies": 6,
       "likes": 10,
       "messages": [
         {
@@ -23,6 +23,11 @@
           "id": 2,
           "author": "User2",
           "content": "Looking forward to the discussions!"
+        },
+        {
+          "id": 3,
+          "author": "Current User",
+          "content": "I'll definetely join!"
         }
       ],
       "imageUrls": [
