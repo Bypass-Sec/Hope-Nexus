@@ -10,7 +10,9 @@ import { ForumCardSkeleton } from '../../components/Forum/forum-card-skeleton'
 import { Checkbox } from "../../components/Forum/ui/checkbox"
 import Footer from '../../components/Footer'
 
-interface ForumPost {
+
+// use "type" or else parisng error is thrown
+type ForumPost = {
   id: number
   title: string
   author: string

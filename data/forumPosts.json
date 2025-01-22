@@ -160,7 +160,7 @@
         "events",
         "impact-report"
       ],
-      "replies": 2,
+      "replies": 3,
       "likes": 28,
       "messages": [
         {
@@ -172,6 +172,11 @@
           "id": 11,
           "author": "Volunteer22",
           "content": "So proud of our community!"
+        },
+        {
+          "id": 12,
+          "author": "Current User",
+          "content": "yeah"
         }
       ],
       "imageUrls": [

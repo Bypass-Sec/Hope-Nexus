@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server'
 import { promises as fs } from 'fs'
 import path from 'path'
 
-interface Message {
+type Message = {
   id: number
   author: string
   content: string
 }
 
-interface ForumPost {
+type ForumPost = {
   id: number
   title: string
   author: string
@@ -23,19 +23,19 @@ interface ForumPost {
   isPinned: boolean
 }
 
-interface ForumData {
+type ForumData = {
   forumPosts: ForumPost[]
   allTags: string[]
 }
 
-// Helper function to read the JSON file
+//  function to read the JSON file
 async function getForumData(): Promise<ForumData> {
   const filePath = path.join(process.cwd(), 'data', 'forumPosts.json')
   const jsonData = await fs.readFile(filePath, 'utf8')
   return JSON.parse(jsonData)
 }
 
-// Helper function to write to the JSON file
+//  function to write to the JSON file
 async function saveForumData(data: ForumData): Promise<void> {
   const filePath = path.join(process.cwd(), 'data', 'forumPosts.json')
   await fs.writeFile(filePath, JSON.stringify(data, null, 2))
