@@ -1,139 +1,154 @@
-import { NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
-
-type Message = {
-  id: number
-  author: string
-  content: string
-}
-
-type ForumPost = {
-  id: number
-  title: string
-  author: string
-  authorAvatar: string
-  date: string
-  content: string
-  tags: string[]
-  replies: number
-  likes: number
-  messages: Message[]
-  imageUrls: string[]
-  isPinned: boolean
-}
-
-type ForumData = {
-  forumPosts: ForumPost[]
-  allTags: string[]
-}
-
-//  function to read the JSON file
-async function getForumData(): Promise<ForumData> {
-  const filePath = path.join(process.cwd(), 'data', 'forumPosts.json')
-  const jsonData = await fs.readFile(filePath, 'utf8')
-  return JSON.parse(jsonData)
-}
-
-//  function to write to the JSON file
-async function saveForumData(data: ForumData): Promise<void> {
-  const filePath = path.join(process.cwd(), 'data', 'forumPosts.json')
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2))
-}
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
+import { cookies } from "next/headers"
+import { NextResponse } from "next/server"
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const page = parseInt(searchParams.get('page') || '1')
-  const limit = parseInt(searchParams.get('limit') || '10')
+  const page = Number.parseInt(searchParams.get("page") || "1")
+  const limit = Number.parseInt(searchParams.get("limit") || "10")
   const start = (page - 1) * limit
-  const end = start + limit
 
-  const data = await getForumData()
-  const paginatedPosts = data.forumPosts.slice(start, end)
-  
-  return NextResponse.json({ 
-    posts: paginatedPosts, 
-    tags: data.allTags, 
-    totalPosts: data.forumPosts.length,
+  const supabase = createRouteHandlerClient({ cookies })
+
+  // Fetch posts with user information and reply count
+  const {
+    data: posts,
+    error: postsError,
+    count,
+  } = await supabase
+    .from("posts")
+    .select(
+      `*,
+      profiles:user_id (username),
+      replies:replies (count)`
+    , { count: "exact" })
+    .order("created_at", { ascending: false })
+    .range(start, start + limit - 1)
+
+  if (postsError) {
+    return NextResponse.json({ error: postsError.message }, { status: 500 })
+  }
+
+  // Handle 'count' being potentially null
+  const totalPosts = count ?? 0  // Use 0 if count is null
+
+  // Fetch all unique tags
+  const { data: tags, error: tagsError } = await supabase.from("posts").select("tags")
+
+  if (tagsError) {
+    return NextResponse.json({ error: tagsError.message }, { status: 500 })
+  }
+
+  const allTags = Array.from(new Set(tags.flatMap((post) => post.tags || [])))
+
+  return NextResponse.json({
+    posts,
+    tags: allTags,
+    totalPosts,
     currentPage: page,
-    totalPages: Math.ceil(data.forumPosts.length / limit)
+    totalPages: Math.ceil(totalPosts / limit),
   })
 }
 
+
 export async function POST(request: Request) {
+  const supabase = createRouteHandlerClient({ cookies })
   const requestData = await request.json()
-  const data = await getForumData()
 
   switch (requestData.type) {
-    case 'newPost':
-      const newPost: ForumPost = {
-        id: data.forumPosts.length + 1,
-        title: requestData.title,
-        author: "Current User",
-        authorAvatar: "/placeholder.svg?height=40&width=40",
-        date: new Date().toISOString().split('T')[0],
-        content: requestData.content,
-        tags: requestData.tags,
-        replies: 0,
-        likes: 0,
-        messages: [],
-        imageUrls: requestData.imageUrls || [],
-        isPinned: false,
+    case "newPost":
+      const { data: newPost, error: newPostError } = await supabase
+        .from("posts")
+        .insert({
+          title: requestData.title,
+          body: requestData.content,
+          user_id: requestData.userId,
+          tags: requestData.tags,
+          image_url: requestData.imageUrls,
+        })
+        .select()
+        .single()
+
+      if (newPostError) {
+        return NextResponse.json({ error: newPostError.message }, { status: 500 })
       }
-      data.forumPosts.push(newPost)
-      await saveForumData(data)
       return NextResponse.json({ success: true, post: newPost })
 
-    case 'deletePost':
-      data.forumPosts = data.forumPosts.filter(post => post.id !== requestData.postId)
-      await saveForumData(data)
-      return NextResponse.json({ success: true })
+    case "deletePost":
+      const { error: deletePostError } = await supabase.from("posts").delete().eq("id", requestData.postId)
 
-    case 'newMessage':
-      const post = data.forumPosts.find((p: ForumPost) => p.id === requestData.postId)
-      if (post) {
-        const newMessageId = post.messages.length > 0 ? 
-          Math.max(...post.messages.map((m: Message) => m.id)) + 1 : 1
-        post.messages.push({ id: newMessageId, ...requestData.message })
-        post.replies += 1
-        await saveForumData(data)
+      if (deletePostError) {
+        return NextResponse.json({ error: deletePostError.message }, { status: 500 })
       }
       return NextResponse.json({ success: true })
 
-    case 'deleteMessage':
-      const postToUpdate = data.forumPosts.find((p: ForumPost) => p.id === requestData.postId)
-      if (postToUpdate) {
-        postToUpdate.messages = postToUpdate.messages.filter((m: Message) => m.id !== requestData.messageId)
-        postToUpdate.replies -= 1
-        await saveForumData(data)
+    case "newReply":
+      const { data: newReply, error: newReplyError } = await supabase
+        .from("replies")
+        .insert({
+          body: requestData.message.content,
+          user_id: requestData.message.userId,
+          post_id: requestData.postId,
+        })
+        .select()
+        .single()
+
+      if (newReplyError) {
+        return NextResponse.json({ error: newReplyError.message }, { status: 500 })
+      }
+      return NextResponse.json({ success: true, reply: newReply })
+
+    case "deleteReply":
+      const { error: deleteReplyError } = await supabase.from("replies").delete().eq("id", requestData.replyId)
+
+      if (deleteReplyError) {
+        return NextResponse.json({ error: deleteReplyError.message }, { status: 500 })
       }
       return NextResponse.json({ success: true })
 
-    case 'toggleLike':
-      const postToLike = data.forumPosts.find((p: ForumPost) => p.id === requestData.postId)
-      if (postToLike) {
-        postToLike.likes += requestData.isLiked ? -1 : 1
-        await saveForumData(data)
+    case "toggleLike":
+      const { data: post, error: postError } = await supabase
+        .from("posts")
+        .select("likes")
+        .eq("id", requestData.postId)
+        .single()
+
+      if (postError) {
+        return NextResponse.json({ error: postError.message }, { status: 500 })
       }
+
+      const likes = post.likes || []
+      const updatedLikes = requestData.isLiked
+        ? likes.filter((id: string) => id !== requestData.userId)
+        : [...likes, requestData.userId]
+
+      const { error: updateLikeError } = await supabase
+        .from("posts")
+        .update({ likes: updatedLikes })
+        .eq("id", requestData.postId)
+
+      if (updateLikeError) {
+        return NextResponse.json({ error: updateLikeError.message }, { status: 500 })
+      }
+      return NextResponse.json({ success: true, likes: updatedLikes })
+
+    case "addTag":
+      // Tags are stored in the posts table, so we don't need to add them separately
       return NextResponse.json({ success: true })
 
-    case 'addTag':
-      if (!data.allTags.includes(requestData.tag)) {
-        data.allTags.push(requestData.tag)
-        await saveForumData(data)
-      }
-      return NextResponse.json({ success: true, tags: data.allTags })
+    case "togglePin":
+      const { error: togglePinError } = await supabase
+        .from("posts")
+        .update({ is_pinned: requestData.isPinned })
+        .eq("id", requestData.postId)
 
-    case 'togglePin':
-      const postToPin = data.forumPosts.find((p: ForumPost) => p.id === requestData.postId)
-      if (postToPin) {
-        postToPin.isPinned = requestData.isPinned
-        await saveForumData(data)
+      if (togglePinError) {
+        return NextResponse.json({ error: togglePinError.message }, { status: 500 })
       }
       return NextResponse.json({ success: true })
 
     default:
-      return NextResponse.json({ success: false, error: 'Invalid action type' }, { status: 400 })
+      return NextResponse.json({ success: false, error: "Invalid action type" }, { status: 400 })
   }
 }
 
