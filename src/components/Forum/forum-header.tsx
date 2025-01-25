@@ -1,53 +1,60 @@
-'use client'
-
-import { useState } from 'react'
-import { Input } from "../Forum/ui/input"
-import { Button } from "../Forum/ui/button"
-import { Badge } from "../Forum/ui/badge"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../Forum/ui/dialog"
-import { Label } from "../Forum/ui/label"
-import { Textarea } from "../Forum/ui/textarea"
-import { Plus, X } from 'lucide-react'
+import { useState } from "react"
+import { Input } from "./ui/input"
+import { Button } from "./ui/button"
+import { Badge } from "./ui/badge"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
+import { Label } from "./ui/label"
+import { Textarea } from "./ui/textarea"
+import { Plus, X } from "lucide-react"
 
 interface ForumHeaderProps {
   tags: string[]
   selectedTags: string[]
   onTagSelect: (tag: string) => void
   onSearch: (query: string) => void
-  onCreatePost: (post: { title: string; content: string; tags: string[]; imageUrls: string[] }) => void
-  onAddCustomTag?: (tag: string) => void // Made optional
+  onCreatePost: (post: { title: string; content: string; tags: string[]; imageUrls: string[] }) => Promise<void>
+  onAddCustomTag?: (tag: string) => void
+  isLoggedIn: boolean
 }
 
-export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreatePost, onAddCustomTag }: ForumHeaderProps) {
+export function ForumHeader({
+  tags,
+  selectedTags,
+  onTagSelect,
+  onSearch,
+  onCreatePost,
+  onAddCustomTag,
+  isLoggedIn,
+}: ForumHeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
   const [postTags, setPostTags] = useState<string[]>([])
-  const [newTag, setNewTag] = useState('')
+  const [newTag, setNewTag] = useState("")
   const [isAddingTag, setIsAddingTag] = useState(false)
-  const [imageUrls, setImageUrls] = useState<string[]>([''])
+  const [imageUrls, setImageUrls] = useState<string[]>([""])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    onCreatePost({ title, content, tags: postTags, imageUrls: imageUrls.filter(url => url.trim() !== '') })
+    await onCreatePost({ title, content, tags: postTags, imageUrls: imageUrls.filter((url) => url.trim() !== "") })
     setIsOpen(false)
-    setTitle('')
-    setContent('')
+    setTitle("")
+    setContent("")
     setPostTags([])
-    setImageUrls([''])
+    setImageUrls([""])
   }
 
   const handleAddCustomTag = (e: React.FormEvent) => {
     e.preventDefault()
-    if (newTag.trim() !== '' && !tags.includes(newTag.trim())) {
-      onAddCustomTag?.(newTag.trim())
-      setNewTag('')
+    if (newTag.trim() !== "" && !tags.includes(newTag.trim()) && onAddCustomTag) {
+      onAddCustomTag(newTag.trim())
+      setNewTag("")
     }
     setIsAddingTag(false)
   }
 
   const handleAddImageUrl = () => {
-    setImageUrls([...imageUrls, ''])
+    setImageUrls([...imageUrls, ""])
   }
 
   const handleRemoveImageUrl = (index: number) => {
@@ -61,13 +68,13 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
   }
 
   return (
-    <div className="mb-8 space-y-6 text-slate-900"> 
-      <div className="flex items-center gap-4 mt-20"> 
+    <div className="mb-8 space-y-6">
+      <div className="flex items-center gap-4">
         <div className="relative flex-1">
-          <Input 
-            type="search" 
-            placeholder="   Search forums..." 
-            className="pl-10 bg-white border-slate-200 text-slate-900 placeholder-slate-400 h-11" /* Added h-11 to match button */
+          <Input
+            type="search"
+            placeholder="Search forums..."
+            className="pl-10"
             onChange={(e) => onSearch(e.target.value)}
           />
           <svg
@@ -87,44 +94,42 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
         </div>
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 h-11" size="lg">
-              Create New Post
-            </Button>
+            <Button disabled={!isLoggedIn}>{isLoggedIn ? "Create New Post" : "Log in to Create Post"}</Button>
           </DialogTrigger>
-          <DialogContent className="max-w-3xl">
+          <DialogContent>
             <DialogHeader>
-              <DialogTitle className='text-black'>Create a new forum post</DialogTitle>
+              <DialogTitle>Create a new forum post</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="title" className='text-black'>Title</Label>
-                <Input 
-                  id="title" 
-                  value={title} 
-                  onChange={(e) => setTitle(e.target.value)} 
-                  placeholder="Enter post title" 
+                <Label htmlFor="title">Title</Label>
+                <Input
+                  id="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="Enter post title"
                 />
               </div>
               <div>
-                <Label htmlFor="content" className='text-black'>Content</Label>
-                <Textarea 
-                  id="content" 
-                  value={content} 
-                  onChange={(e) => setContent(e.target.value)} 
-                  placeholder="Enter post content" 
+                <Label htmlFor="content">Content</Label>
+                <Textarea
+                  id="content"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  placeholder="Enter post content"
                 />
               </div>
               <div>
-                <Label className='text-black'>Tags</Label>
+                <Label>Tags</Label>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {tags.map((tag) => (
                     <Badge
                       key={tag}
                       variant={postTags.includes(tag) ? "default" : "secondary"}
                       className="cursor-pointer"
-                      onClick={() => setPostTags(prev =>
-                        prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
-                      )}
+                      onClick={() =>
+                        setPostTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]))
+                      }
                     >
                       {tag}
                     </Badge>
@@ -132,7 +137,7 @@ export function ForumHeader({ tags, selectedTags, onTagSelect, onSearch, onCreat
                 </div>
               </div>
               <div>
-                <Label className='text-black'>Image URLs</Label>
+                <Label>Image URLs</Label>
                 {imageUrls.map((url, index) => (
                   <div key={index} className="flex items-center mt-2">
                     <Input

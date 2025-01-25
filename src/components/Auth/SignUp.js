@@ -8,8 +8,9 @@ import Link from 'next/link';
 import * as Yup from 'yup';
 
 const SignUpSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().required('Required'),
+  displayName: Yup.string().required('Display name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
 });
 
 const SignUp = () => {
@@ -21,7 +22,11 @@ const SignUp = () => {
     const { error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
-      // redirectTo: `${window.location.origin}/auth/callback`,
+      options: {
+        data: {
+          displayName: formData.displayName, // Add display name to user metadata
+        },
+      },
     });
 
     if (error) {
@@ -36,6 +41,7 @@ const SignUp = () => {
       <h2 className="w-full text-center">Create Account</h2>
       <Formik
         initialValues={{
+          displayName: '',
           email: '',
           password: '',
         }}
@@ -44,6 +50,18 @@ const SignUp = () => {
       >
         {({ errors, touched }) => (
           <Form className="column w-full">
+            <label htmlFor="displayName">Display Name</label>
+            <Field
+              className={cn('input', errors.displayName && touched.displayName && 'bg-red-50')}
+              id="displayName"
+              name="displayName"
+              placeholder="John Doe"
+              type="text"
+            />
+            {errors.displayName && touched.displayName ? (
+              <div className="text-red-600">{errors.displayName}</div>
+            ) : null}
+
             <label htmlFor="email">Email</label>
             <Field
               className={cn('input', errors.email && 'bg-red-50')}
@@ -56,7 +74,7 @@ const SignUp = () => {
               <div className="text-red-600">{errors.email}</div>
             ) : null}
 
-            <label htmlFor="email">Password</label>
+            <label htmlFor="password">Password</label>
             <Field
               className={cn('input', errors.password && touched.password && 'bg-red-50')}
               id="password"

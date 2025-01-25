@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardContent, CardFooter } from "../Forum/ui/card"
+import { Card, CardHeader, CardContent, CardFooter } from "./ui/card"
 
 export function ForumCardSkeleton() {
   return (
@@ -31,3 +31,4 @@ export function ForumCardSkeleton() {
     </Card>
   )
 }
+
