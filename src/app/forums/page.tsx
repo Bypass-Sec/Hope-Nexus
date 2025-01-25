@@ -9,6 +9,7 @@ import { Textarea } from "../../components/Forum/ui/textarea"
 import { X, Send } from "lucide-react"
 import { ForumCardSkeleton } from "../../components/Forum/forum-card-skeleton"
 import { Checkbox } from "../../components/Forum/ui/checkbox"
+import Footer from '../../components/Footer'
 import { CardFooter } from "@/components/Forum/ui/card"
 
 type ForumPost = {
@@ -463,6 +464,7 @@ export default function ForumsPage() {
         )}
         
       </div>
+      <Footer />
     </div>
   )
 }
