@@ -116,4 +116,6 @@ To get started with Hope Nexus, follow these steps:
 - [found-sec](https://github.com/found-sec)
 - [tonkerbell](https://github.com/tonkerbell)
 - [OmarAbdullah1-ux](https://github.com/OmarAbdullah1-ux).
+
+### > For the CMUQ Lifelines Hackathon 2025. Contributions are welcome, but this repository is no longer being actively maintained.
   
