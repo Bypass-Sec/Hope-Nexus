@@ -24,31 +24,20 @@ export default async function NewsPage() {
         </p>
       </div>
 
-      {/* Content Container */}
+      {/* News Grid */}
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-[1440px] mx-auto">
-          <Suspense fallback={<div className="text-center text-slate-600">Loading news...</div>}>
-            {newsArray.length === 0 ? (
-              <div className="text-center text-xl text-slate-700 my-4">
-                No news articles available
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-                {newsArray.map((article, index) => (
-                  <TextCard
-                    key={index}
-                    heading={article.title || 'No Title Available'}
-                    subheading={`${article.authorsByline || 'Anonymous'}, ${article.source?.domain || 'Unknown Publisher'}`}
-                    bodyText={article.summary || 'No Summary Available'}
-                    imageUrl={article.imageUrl || 'https://via.placeholder.com/150'}
-                    linkUrl={article.url || '#'}
-                  />
-                ))}
-              </div>
-            )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Suspense fallback={<div>Loading news...</div>}>
+            {newsArray.map((news) => (
+              <TextCard
+                key={news.id || news.url}
+                {...news}
+              />
+            ))}
           </Suspense>
         </div>
       </div>
+
       <Footer />
     </div>
   );

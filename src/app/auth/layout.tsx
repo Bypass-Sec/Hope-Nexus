@@ -1,5 +1,7 @@
-interface AuthLayoutProps {
-  children: React.ReactNode;
+import type { ReactNode } from 'react';
+
+export interface AuthLayoutProps {
+  children: ReactNode;
 }
 
 export default function AuthLayout({ children }: AuthLayoutProps) {

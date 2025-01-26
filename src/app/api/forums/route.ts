@@ -17,11 +17,11 @@ export async function GET(request: Request) {
     count,
   } = await supabase
     .from("posts")
-    .select(
-      `*,
-      profiles:user_id (username),
-      replies:replies (count)`
-    , { count: "exact" })
+    .select(`
+      *,
+      profiles!user_id(username),
+      replies!posts_id(count)
+    `, { count: "exact" })
     .order("created_at", { ascending: false })
     .range(start, start + limit - 1)
 

@@ -12,7 +12,7 @@ import { Checkbox } from "../../components/Forum/ui/checkbox"
 import Footer from '../../components/Footer'
 import { CardFooter } from "@/components/Forum/ui/card"
 
-type ForumPost = {
+interface ForumPost {
   id: string
   title: string
   body: string
@@ -28,7 +28,7 @@ type ForumPost = {
 }
 
 
-type Reply = {
+interface Reply {
   id: string
   body: string
   user_id: string
