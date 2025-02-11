@@ -2,7 +2,7 @@
 
 # Hope Nexus 🌍
 
-Hope Nexus is a centralized humanity platform built on Next.js and Supabase. It aims to coordinate, simplify, and centralize donations and campaigns among both individuals and non-profits.
+Hope Nexus is a humanity platform built with Next.js and Supabase. It aims to coordinate, simplify, and centralize donations and campaigns among both individuals and non-profits.
 
 ## The Leading Problem 🚨
 
