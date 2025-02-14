@@ -1,3 +1,5 @@
+### A project for the CMUQ Lifelines hackathon 2025. This repository is no longer being maintained.
+
 ![Hope Nexus Logo](./public/Logo_Banner.png)
 
 # Hope Nexus 🌍
@@ -117,5 +119,3 @@ To get started with Hope Nexus, follow these steps:
 - [tonkerbell](https://github.com/tonkerbell)
 - [OmarAbdullah1-ux](https://github.com/OmarAbdullah1-ux).
 
-### > For the CMUQ Lifelines Hackathon 2025. Contributions are welcome, but this repository is no longer being actively maintained.
-  
