@@ -117,5 +117,5 @@ To get started with Hope Nexus, follow these steps:
 - [SnowyCrest](https://github.com/SnowyCrest)
 - [found-sec](https://github.com/found-sec)
 - [tonkerbell](https://github.com/tonkerbell)
-- [OmarAbdullah1-ux](https://github.com/OmarAbdullah1-ux).
+- [Bypass-Sec](https://github.com/Bypass-Sec)
 
